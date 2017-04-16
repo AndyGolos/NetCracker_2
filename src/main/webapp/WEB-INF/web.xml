@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<display-name>Servlet 3.0 Web Application</display-name>
+
+	<servlet>
+		<servlet-name>Controller</servlet-name>
+		<servlet-class>controllers.Controller</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Controller</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<!-- <servlet-mapping>
+		<servlet-name>index</servlet-name>
+		<url-pattern>/index</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>index</servlet-name>
+		<jsp-file>/WEB-INF/pages/index.jsp</jsp-file>
+	</servlet> -->
+
+	<servlet-mapping>
+		<servlet-name>signin</servlet-name>
+		<url-pattern>/signin</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>signin</servlet-name>
+		<jsp-file>/WEB-INF/pages/signin.jsp</jsp-file>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>registration</servlet-name>
+		<url-pattern>/registration</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>registration</servlet-name>
+		<jsp-file>/WEB-INF/pages/registration.jsp</jsp-file>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>userpage</servlet-name>
+		<url-pattern>/userpage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>userpage</servlet-name>
+		<jsp-file>/WEB-INF/pages/userpage.jsp</jsp-file>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>transitionAddCardPage</servlet-name>
+		<url-pattern>/transitionpage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>transitionAddCardPage</servlet-name>
+		<jsp-file>/WEB-INF/pages/transitionpage.jsp</jsp-file>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>addCardpage</servlet-name>
+		<url-pattern>/addCard</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>addCardpage</servlet-name>
+		<jsp-file>/WEB-INF/pages/addCard.jsp</jsp-file>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>addCardWithBillpage</servlet-name>
+		<url-pattern>/addCardWithBill</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>addCardWithBillpage</servlet-name>
+		<jsp-file>/WEB-INF/pages/addCardWithBill.jsp</jsp-file>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>transitionDeleteCardpage</servlet-name>
+		<url-pattern>/deleteCardPage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>transitionDeleteCardpage</servlet-name>
+		<jsp-file>/WEB-INF/pages/deleteCardPage.jsp</jsp-file>
+	</servlet>
+
+</web-app>

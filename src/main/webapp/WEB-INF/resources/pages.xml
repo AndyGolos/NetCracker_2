@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE NetCracker_2>
+<site>
+	<mapping>
+		<class-name>actions.SignInAction</class-name>
+		<class-url>GET/signin</class-url>
+	</mapping>
+
+	<mapping>
+		<class-name>actions.RegisterAction</class-name>
+		<class-url>GET/registration</class-url>
+	</mapping>
+
+	<mapping>
+		<class-name>actions.UserPageAction</class-name>
+		<class-url>POST/userpage</class-url>
+	</mapping>
+
+	<mapping>
+		<class-name>actions.TransitionAddCardAction</class-name>
+		<class-url>GET/transitionAddCardpage</class-url>
+	</mapping>
+
+	<mapping>
+		<class-name>actions.AddCardAction</class-name>
+		<class-url>GET/addCard</class-url>
+	</mapping>
+
+	<mapping>
+		<class-name>actions.TransitionDeleteCardAction</class-name>
+		<class-url>GET/transitionDeleteCardpage</class-url>
+	</mapping>
+
+	<mapping>
+		<class-name>actions.AddCardWithBillAction</class-name>
+		<class-url>GET/addCardWithBill</class-url>
+	</mapping>
+
+
+	<!-- <mapping> <class-name>ads</class-name> <class-url>actions.AddCardAction</class-url> 
+		</mapping> <mapping> <class-name>qrwerwer</class-name> <class-url>actions.CreateBillAction</class-url> 
+		</mapping> <mapping> <class-name>qrwerwer</class-name> <class-url>actions.DeleteCardAction</class-url> 
+		</mapping> -->
+
+	<!-- <mapping> <class-name>actions.SignInAction</class-name> <class-url>GET/</class-url> 
+		</mapping> -->
+
+	<!-- <mapping> <class-name>qrwerwer</class-name> <class-url>actions.ServicesAction</class-url> 
+		</mapping> <mapping> <class-name>qwe</class-name> <class-url>actions.TransferMoneyAction</class-url> 
+		</mapping> <mapping> <class-name>qrwerwer</class-name> <class-url>actions.UnblockCardAction</class-url> 
+		</mapping> -->
+	<!-- <mapping> <class-name>actions.UserPageAction</class-name> <class-url>POST/userpage</class-url> 
+		</mapping> -->
+	<!-- <mapping> <class-name>actions.TransitionAction</class-name> <class-url>GET/transitionaddcardpage</class-url> 
+		</mapping> -->
+</site>
