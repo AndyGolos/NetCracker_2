@@ -3,10 +3,11 @@ package actions;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AddCardAction implements Action {
+public class TransitionUnblockCardAction implements Action {
 
+	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		return "addCard";
+		return "unblockCardpage";
 	}
 
 }

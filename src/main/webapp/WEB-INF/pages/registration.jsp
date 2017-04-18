@@ -15,14 +15,15 @@
 		<div class="row">
 			<div class="navbar navbar-inverse ">
 				<h3 class="col-lg-4">Payment System Manager</h3>
-				<form action="signin.do" method="GET">
+				<a class="btn btn-primary col-lg-offset-7" href="signin">Войти</a>
+				<!-- <form action="signin.do" method="GET">
 					<div class="form-group">
 						<div class="col-lg-2 col-lg-offset-5">
 							<button type="submit"
 								class="btn btn-primary col-lg-offset-6 btn-block">Войти</button>
 						</div>
 					</div>	
-				</form>
+				</form> -->
 			</div>
 		</div>
 	</div>

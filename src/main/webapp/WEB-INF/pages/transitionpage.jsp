@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,15 +30,29 @@
 	<div class="container margtransition">
 		<h2 class="form-signin-heading text-center">Привязать карточку к:</h2>
 
-		<form class="form-horizontal " action="addCard.do">
-			<div class="form-group">
-				<div class="col-lg-4 col-lg-offset-4">
-					<button class="btn btn-lg btn-success btn-block" type="submit"
-						onclick="">Существующему счёту</button>
+		<jsp:useBean id="cards" type="java.util.List<beans.cardbeans.Card>"
+			scope="session" />
+		<c:if test="${fn:length(cards)==0}">
+			<form class="form-horizontal " action="createCard.do">
+				<div class="form-group">
+					<div class="col-lg-4 col-lg-offset-4">
+						<button class="btn btn-lg btn-success btn-block" type="submit" disabled>Существующему
+							счёту</button>
+					</div>
 				</div>
-			</div>
-		</form>
-		<form class="form-horizontal " action="addCardWithBill.do">
+			</form>
+		</c:if>
+		<c:if test="${fn:length(cards)!=0}">
+			<form class="form-horizontal " action="createCard.do">
+				<div class="form-group">
+					<div class="col-lg-4 col-lg-offset-4">
+						<button class="btn btn-lg btn-success btn-block" type="submit">Существующему
+							счёту</button>
+					</div>
+				</div>
+			</form>
+		</c:if>
+		<form class="form-horizontal " action="createCardWithBill.do">
 			<div class="form-group">
 				<div class="col-lg-4 col-lg-offset-4">
 					<button class="btn btn-lg btn-success btn-block" type="submit"
@@ -48,8 +64,9 @@
 
 	<script src="static/js/validation.js" type="text/javascript"></script>
 	<script src="static/js/bootstrap.js" type="text/javascript"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 
 </body>
 </html>

@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import entities.CardEntity;
 import entities.UsageHistoryEntity;
 import utils.ConnectionUtil;
 
@@ -32,21 +31,21 @@ public class HistoryDao extends BaseDaoImpl {
 			// TODO Logger!
 			System.err.println(e);
 		} finally {
-			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
+			ConnectionUtil.closeAll(connection, preparedStatement, null);
 		}
 	}
 
-	public List<UsageHistoryEntity> findAll(CardEntity card) {
-		List<UsageHistoryEntity> listOfHistories = null;
+	// Было CardEntity
+	public List<UsageHistoryEntity> findAll(int id) {
+		List<UsageHistoryEntity> listOfHistories = new ArrayList<>();
 		String sql = "select * from usage_history where usage_history.card_id = ?;";
 		try {
 			connection = ConnectionUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, card.getId());
+			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
-				listOfHistories = new ArrayList<>();
 				UsageHistoryEntity historyEntity = new UsageHistoryEntity();
 				historyEntity.setId(resultSet.getInt("id"));
 				historyEntity.setCardId(resultSet.getInt("card_id"));

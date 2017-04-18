@@ -43,7 +43,7 @@ public class Controller extends HttpServlet {
 
 		if (action != null) {
 			String view = action.execute(request, response);
-			System.out.println(view);
+			System.out.println("controller = " + view);
 			request.getRequestDispatcher(view).forward(request, response);
 		} else {
 			request.getRequestDispatcher("error").forward(request, response);

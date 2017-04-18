@@ -12,7 +12,7 @@ public class User {
 	private String surname;
 	private String lastname;
 	private String email;
-	private int password;
+	private String password;
 	private List<UserRole> role;
 	private LocalDate registration;
 	private LocalDate dateOfBirth;
@@ -31,8 +31,8 @@ public class User {
 	 * @param registration
 	 * @param dateOfBirth
 	 */
-	public User(int id, String name, String surname, String lastname, String email, int password, List<UserRole> role,
-			LocalDate registration, LocalDate dateOfBirth) {
+	public User(int id, String name, String surname, String lastname, String email, String password,
+			List<UserRole> role, LocalDate registration, LocalDate dateOfBirth) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -53,7 +53,8 @@ public class User {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -67,7 +68,8 @@ public class User {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -81,7 +83,8 @@ public class User {
 	}
 
 	/**
-	 * @param surname the surname to set
+	 * @param surname
+	 *            the surname to set
 	 */
 	public void setSurname(String surname) {
 		this.surname = surname;
@@ -95,7 +98,8 @@ public class User {
 	}
 
 	/**
-	 * @param lastname the lastname to set
+	 * @param lastname
+	 *            the lastname to set
 	 */
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
@@ -109,7 +113,8 @@ public class User {
 	}
 
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -118,14 +123,15 @@ public class User {
 	/**
 	 * @return the password
 	 */
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
 	/**
-	 * @param password the password to set
+	 * @param password
+	 *            the password to set
 	 */
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
@@ -137,7 +143,8 @@ public class User {
 	}
 
 	/**
-	 * @param role the role to set
+	 * @param role
+	 *            the role to set
 	 */
 	public void setRole(List<UserRole> role) {
 		this.role = role;
@@ -151,7 +158,8 @@ public class User {
 	}
 
 	/**
-	 * @param registration the registration to set
+	 * @param registration
+	 *            the registration to set
 	 */
 	public void setRegistration(LocalDate registration) {
 		this.registration = registration;
@@ -165,7 +173,8 @@ public class User {
 	}
 
 	/**
-	 * @param dateOfBirth the dateOfBirth to set
+	 * @param dateOfBirth
+	 *            the dateOfBirth to set
 	 */
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;

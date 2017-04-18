@@ -1,25 +1,25 @@
 package beans.cardbeans;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import beans.CardBill;
 import beans.CardHistory;
-import beans.CardStatus;
 import beans.CardType;
 import beans.userbeans.User;
 
 public class Card {
 
 	private int id;
+	// TODO Возможно не нужен юзер!
 	private User user;
 	private CardBill bill;
-	private int password;
-	private CardStatus status;
+	private String password;
+	private boolean status;
 	private CardType type;
 	private LocalDate timeOfRegistration;
 	private LocalDate validity;
-	// TODO Возможно нужен лист!
-	private CardHistory history;
+	private List<CardHistory> history;
 
 	public Card() {
 	}
@@ -35,8 +35,8 @@ public class Card {
 	 * @param validity
 	 * @param history
 	 */
-	public Card(int id, User user, CardBill bill, int password, CardStatus status, CardType type,
-			LocalDate timeOfRegistration, LocalDate validity, CardHistory history) {
+	public Card(int id, User user, CardBill bill, String password, boolean status, CardType type,
+			LocalDate timeOfRegistration, LocalDate validity, List<CardHistory> history) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -97,7 +97,7 @@ public class Card {
 	/**
 	 * @return the password
 	 */
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
@@ -105,14 +105,14 @@ public class Card {
 	 * @param password
 	 *            the password to set
 	 */
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 
 	/**
 	 * @return the status
 	 */
-	public CardStatus getStatus() {
+	public boolean getStatus() {
 		return status;
 	}
 
@@ -120,7 +120,7 @@ public class Card {
 	 * @param status
 	 *            the status to set
 	 */
-	public void setStatus(CardStatus status) {
+	public void setStatus(boolean status) {
 		this.status = status;
 	}
 
@@ -172,7 +172,7 @@ public class Card {
 	/**
 	 * @return the history
 	 */
-	public CardHistory getHistory() {
+	public List<CardHistory> getHistory() {
 		return history;
 	}
 
@@ -180,7 +180,7 @@ public class Card {
 	 * @param history
 	 *            the history to set
 	 */
-	public void setHistory(CardHistory history) {
+	public void setHistory(List<CardHistory> history) {
 		this.history = history;
 	}
 }

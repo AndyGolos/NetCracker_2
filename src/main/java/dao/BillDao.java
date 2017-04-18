@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import entities.BillEntity;
-import entities.CardEntity;
 import utils.ConnectionUtil;
 
 public class BillDao extends BaseDaoImpl {
@@ -30,13 +29,14 @@ public class BillDao extends BaseDaoImpl {
 		}
 	}
 
-	public BillEntity find(CardEntity card) {
+	// Было CardEntity
+	public BillEntity find(int id) {
 		BillEntity bill = null;
 		String sql = "select * from bill where bill.id = ?;";
 		try {
 			connection = ConnectionUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, card.getBillId());
+			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				bill = new BillEntity();
@@ -47,6 +47,8 @@ public class BillDao extends BaseDaoImpl {
 		} catch (Exception e) {
 			// TODO Logger
 			System.err.println(e);
+		} finally {
+			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
 		return bill;
 	}
@@ -62,6 +64,8 @@ public class BillDao extends BaseDaoImpl {
 		} catch (Exception e) {
 			// TODO Logger
 			System.err.println(e);
+		} finally {
+			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
 	}
 }

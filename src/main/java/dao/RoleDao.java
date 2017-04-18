@@ -28,18 +28,19 @@ public class RoleDao extends BaseDaoImpl {
 			// TODO Logger
 			System.err.println(e);
 		} finally {
-			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
+			ConnectionUtil.closeAll(connection, preparedStatement, null);
 		}
 	}
 
-	public List<RoleEntity> find(UserEntity user) {
+	// Испаравил с UserEntity
+	public List<RoleEntity> find(int id) {
 		List<RoleEntity> roleList = new ArrayList<>();
 		String sql = "select role.id, role.role from role left join user_roles on role.id = user_roles.role_id where user_id = ?;";
 
 		try {
 			connection = ConnectionUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, user.getId());
+			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				RoleEntity entity = new RoleEntity();

@@ -21,10 +21,7 @@
 		<class-url>GET/transitionAddCardpage</class-url>
 	</mapping>
 
-	<mapping>
-		<class-name>actions.AddCardAction</class-name>
-		<class-url>GET/addCard</class-url>
-	</mapping>
+	
 
 	<mapping>
 		<class-name>actions.TransitionDeleteCardAction</class-name>
@@ -32,9 +29,52 @@
 	</mapping>
 
 	<mapping>
-		<class-name>actions.AddCardWithBillAction</class-name>
-		<class-url>GET/addCardWithBill</class-url>
+		<class-name>actions.CreateCardWithBillAction</class-name>
+		<class-url>GET/createCardWithBill</class-url>
 	</mapping>
+	
+	<mapping>
+		<class-name>actions.CreateCardAction</class-name>
+		<class-url>GET/createCard</class-url>
+	</mapping>
+	
+	<mapping>
+		<class-name>actions.BlockCardAction</class-name>
+		<class-url>POST/block</class-url>
+	</mapping>
+	
+	
+	<mapping>
+		<class-name>actions.WatchUsageHistoryAction</class-name>
+		<class-url>POST/history</class-url>
+	</mapping>
+	
+	<mapping>
+		<class-name>actions.DeleteCardAction</class-name>
+		<class-url>POST/deleteCard</class-url>
+	</mapping>
+	
+	<mapping>
+		<class-name>actions.WatchAllUsersAction</class-name>
+		<class-url>POST/allUsers</class-url>
+	</mapping>
+	
+	<mapping>
+		<class-name>actions.TransitionUnblockCardAction</class-name>
+		<class-url>POST/transitionunblock</class-url>
+	</mapping>
+	
+	
+	<mapping>
+		<class-name>actions.UnblockCardAction</class-name>
+		<class-url>POST/unblock</class-url>
+	</mapping>
+	
+	<mapping>
+		<class-name>actions.TransitionReplenishCardAction</class-name>
+		<class-url>POST/replenish</class-url>
+	</mapping>
+	
 
 
 	<!-- <mapping> <class-name>ads</class-name> <class-url>actions.AddCardAction</class-url> 

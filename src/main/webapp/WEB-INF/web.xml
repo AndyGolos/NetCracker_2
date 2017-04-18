@@ -7,7 +7,6 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	<display-name>Servlet 3.0 Web Application</display-name>
-
 	<servlet>
 		<servlet-name>Controller</servlet-name>
 		<servlet-class>controllers.Controller</servlet-class>
@@ -16,16 +15,6 @@
 		<servlet-name>Controller</servlet-name>
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
-
-	<!-- <servlet-mapping>
-		<servlet-name>index</servlet-name>
-		<url-pattern>/index</url-pattern>
-	</servlet-mapping>
-	<servlet>
-		<servlet-name>index</servlet-name>
-		<jsp-file>/WEB-INF/pages/index.jsp</jsp-file>
-	</servlet> -->
-
 	<servlet-mapping>
 		<servlet-name>signin</servlet-name>
 		<url-pattern>/signin</url-pattern>
@@ -34,8 +23,6 @@
 		<servlet-name>signin</servlet-name>
 		<jsp-file>/WEB-INF/pages/signin.jsp</jsp-file>
 	</servlet>
-	
-	
 	<servlet-mapping>
 		<servlet-name>registration</servlet-name>
 		<url-pattern>/registration</url-pattern>
@@ -44,8 +31,6 @@
 		<servlet-name>registration</servlet-name>
 		<jsp-file>/WEB-INF/pages/registration.jsp</jsp-file>
 	</servlet>
-	
-	
 	<servlet-mapping>
 		<servlet-name>userpage</servlet-name>
 		<url-pattern>/userpage</url-pattern>
@@ -54,8 +39,6 @@
 		<servlet-name>userpage</servlet-name>
 		<jsp-file>/WEB-INF/pages/userpage.jsp</jsp-file>
 	</servlet>
-	
-	
 	<servlet-mapping>
 		<servlet-name>transitionAddCardPage</servlet-name>
 		<url-pattern>/transitionpage</url-pattern>
@@ -64,28 +47,22 @@
 		<servlet-name>transitionAddCardPage</servlet-name>
 		<jsp-file>/WEB-INF/pages/transitionpage.jsp</jsp-file>
 	</servlet>
-	
-	
 	<servlet-mapping>
-		<servlet-name>addCardpage</servlet-name>
-		<url-pattern>/addCard</url-pattern>
+		<servlet-name>createCardpage</servlet-name>
+		<url-pattern>/createCard</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>addCardpage</servlet-name>
-		<jsp-file>/WEB-INF/pages/addCard.jsp</jsp-file>
+		<servlet-name>createCardpage</servlet-name>
+		<jsp-file>/WEB-INF/pages/createCard.jsp</jsp-file>
 	</servlet>
-	
-	
 	<servlet-mapping>
-		<servlet-name>addCardWithBillpage</servlet-name>
-		<url-pattern>/addCardWithBill</url-pattern>
+		<servlet-name>createCardWithBillpage</servlet-name>
+		<url-pattern>/createCardWithBill</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>addCardWithBillpage</servlet-name>
-		<jsp-file>/WEB-INF/pages/addCardWithBill.jsp</jsp-file>
+		<servlet-name>createCardWithBillpage</servlet-name>
+		<jsp-file>/WEB-INF/pages/createCardWithBill.jsp</jsp-file>
 	</servlet>
-	
-	
 	<servlet-mapping>
 		<servlet-name>transitionDeleteCardpage</servlet-name>
 		<url-pattern>/deleteCardPage</url-pattern>
@@ -94,5 +71,75 @@
 		<servlet-name>transitionDeleteCardpage</servlet-name>
 		<jsp-file>/WEB-INF/pages/deleteCardPage.jsp</jsp-file>
 	</servlet>
+	<servlet-mapping>
+		<servlet-name>errorpage</servlet-name>
+		<url-pattern>/errorpage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>errorpage</servlet-name>
+		<jsp-file>/WEB-INF/pages/errorpage.jsp</jsp-file>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>history</servlet-name>
+		<url-pattern>/history</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>history</servlet-name>
+		<jsp-file>/WEB-INF/pages/usageHistorypage.jsp</jsp-file>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>allUsers</servlet-name>
+		<url-pattern>/allUserspage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>allUsers</servlet-name>
+		<jsp-file>/WEB-INF/pages/allUserspage.jsp</jsp-file>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>transitionUnblockCard</servlet-name>
+		<url-pattern>/unblockCardpage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>transitionUnblockCard</servlet-name>
+		<jsp-file>/WEB-INF/pages/unblockCardpage.jsp</jsp-file>
+	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>replenishCard</servlet-name>
+		<url-pattern>/replenishCardpage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>replenishCard</servlet-name>
+		<jsp-file>/WEB-INF/pages/replenishCardpage.jsp</jsp-file>
+	</servlet>
+
+
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>filters.EncodingFilter</filter-class>
+	</filter>
+	<filter>
+		<filter-name>AuthorizationFilter</filter-name>
+		<filter-class>filters.AuthorizationFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>AuthorizationFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+
+
+
 
 </web-app>

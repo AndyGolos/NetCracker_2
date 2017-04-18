@@ -35,14 +35,15 @@ public class UserDao extends BaseDaoImpl {
 			// TODO Logger
 			System.err.println(e);
 		} finally {
-			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
+			ConnectionUtil.closeAll(connection, preparedStatement, null);
 		}
 
 	}
 
 	public List<UserEntity> findAllUsers() {
 		String sql = "select * from user;";
-		List<UserEntity> listOfUsers = null;
+		UserEntity userEntity = null;
+		List<UserEntity> listOfUsers = new ArrayList<>();
 		try {
 			connection = ConnectionUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
@@ -51,8 +52,7 @@ public class UserDao extends BaseDaoImpl {
 			System.out.println(resultSet.getMetaData().getColumnCount());
 
 			while (resultSet.next()) {
-				listOfUsers = new ArrayList<>();
-				UserEntity userEntity = new UserEntity();
+				userEntity = new UserEntity();
 				userEntity.setId(resultSet.getInt("id"));
 				userEntity.setSurname(resultSet.getString("surname"));
 				userEntity.setName(resultSet.getString("name"));
@@ -69,6 +69,7 @@ public class UserDao extends BaseDaoImpl {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
 
+		System.out.println();
 		return listOfUsers;
 	}
 

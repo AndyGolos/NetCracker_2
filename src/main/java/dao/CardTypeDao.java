@@ -30,6 +30,7 @@ public class CardTypeDao extends BaseDaoImpl {
 				CardTypeEntity typeEntity = new CardTypeEntity();
 				typeEntity.setId(resultSet.getInt("id"));
 				typeEntity.setType(resultSet.getString("type"));
+				System.out.println(resultSet.getString("type"));
 				listOfTypes.add(typeEntity);
 			}
 		} catch (Exception e) {
@@ -40,6 +41,28 @@ public class CardTypeDao extends BaseDaoImpl {
 		}
 
 		return listOfTypes;
+	}
+
+	public String find(int id) {
+		String sql = "select card_type.type from card_type where card_type.id = ?;";
+		String type = "";
+
+		try {
+			connection = ConnectionUtil.getConnection();
+			preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, id);
+			resultSet = preparedStatement.executeQuery();
+			if (resultSet.first()) {
+				type = resultSet.getString("type");
+			}
+		} catch (Exception e) {
+			// TODO Logger!
+			System.err.println(e);
+		} finally {
+			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
+		}
+
+		return type;
 	}
 
 }
