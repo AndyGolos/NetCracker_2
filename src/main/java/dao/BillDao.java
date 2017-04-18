@@ -30,13 +30,13 @@ public class BillDao extends BaseDaoImpl {
 	}
 
 	// Было CardEntity
-	public BillEntity find(int id) {
+	public BillEntity find(int billId) {
 		BillEntity bill = null;
 		String sql = "select * from bill where bill.id = ?;";
 		try {
 			connection = ConnectionUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, id);
+			preparedStatement.setInt(1, billId);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				bill = new BillEntity();
@@ -53,6 +53,7 @@ public class BillDao extends BaseDaoImpl {
 		return bill;
 	}
 
+	// Было BillEntity
 	public void setMoney(BillEntity bill, int money) {
 		String sqlset = "update bill set money = ? where bill.id = ?;";
 		try {

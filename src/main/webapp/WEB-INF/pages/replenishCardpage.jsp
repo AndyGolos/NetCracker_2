@@ -29,13 +29,12 @@
 	<div class="container marg-sign-in">
 		<h2 class="form-signin-heading text-center">Пополнить счёт</h2>
 
-		<form class="form-horizontal" action="deleteCard.do" method="POST">
+		<form class="form-horizontal" action="replenishbill.do" method="POST">
 			<div class="form-group">
-				<label class="control-label col-lg-offset-2 col-lg-2" for="password">id
-					карточки:</label>
+				<label class="control-label col-lg-offset-2 col-lg-2" for="summ">Сумма:</label>
 				<div class="col-lg-4">
-					<input type="number" class="form-control" id="password"
-						placeholder="Введите пароль" min="1" name="cardid" required>
+					<input type="number" class="form-control" id="summ"
+						placeholder="Введите сумму" min="1" name="summ" required>
 				</div>
 			</div>
 

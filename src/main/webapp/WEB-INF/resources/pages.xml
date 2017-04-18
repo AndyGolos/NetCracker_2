@@ -75,6 +75,11 @@
 		<class-url>POST/replenish</class-url>
 	</mapping>
 	
+	<mapping>
+		<class-name>actions.ReplenishBillAction</class-name>
+		<class-url>POST/replenishbill</class-url>
+	</mapping>
+	
 
 
 	<!-- <mapping> <class-name>ads</class-name> <class-url>actions.AddCardAction</class-url> 
