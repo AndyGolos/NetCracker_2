@@ -46,6 +46,7 @@
 						placeholder="Введите пароль" name="password" required>
 				</div>
 			</div>
+			<input type="hidden" name="cardid" value="<c:out value="${cardid}"/>">
 			<input type="hidden" name="billid" value="<c:out value="${billid}"/>">
 			<div class="form-group">
 				<div class="col-lg-4 col-lg-offset-4">

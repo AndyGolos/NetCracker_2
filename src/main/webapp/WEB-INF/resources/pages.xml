@@ -21,8 +21,6 @@
 		<class-url>GET/transitionAddCardpage</class-url>
 	</mapping>
 
-	
-
 	<mapping>
 		<class-name>actions.TransitionDeleteCardAction</class-name>
 		<class-url>GET/transitionDeleteCardpage</class-url>
@@ -43,7 +41,6 @@
 		<class-url>POST/block</class-url>
 	</mapping>
 	
-	
 	<mapping>
 		<class-name>actions.WatchUsageHistoryAction</class-name>
 		<class-url>POST/history</class-url>
@@ -63,7 +60,6 @@
 		<class-name>actions.TransitionUnblockCardAction</class-name>
 		<class-url>POST/transitionunblock</class-url>
 	</mapping>
-	
 	
 	<mapping>
 		<class-name>actions.UnblockCardAction</class-name>
@@ -95,22 +91,14 @@
 		<class-url>POST/addcardwithbill</class-url>
 	</mapping>
 	
-
-
-	<!-- <mapping> <class-name>ads</class-name> <class-url>actions.AddCardAction</class-url> 
-		</mapping> <mapping> <class-name>qrwerwer</class-name> <class-url>actions.CreateBillAction</class-url> 
-		</mapping> <mapping> <class-name>qrwerwer</class-name> <class-url>actions.DeleteCardAction</class-url> 
-		</mapping> -->
-
-	<!-- <mapping> <class-name>actions.SignInAction</class-name> <class-url>GET/</class-url> 
-		</mapping> -->
-
-	<!-- <mapping> <class-name>qrwerwer</class-name> <class-url>actions.ServicesAction</class-url> 
-		</mapping> <mapping> <class-name>qwe</class-name> <class-url>actions.TransferMoneyAction</class-url> 
-		</mapping> <mapping> <class-name>qrwerwer</class-name> <class-url>actions.UnblockCardAction</class-url> 
-		</mapping> -->
-	<!-- <mapping> <class-name>actions.UserPageAction</class-name> <class-url>POST/userpage</class-url> 
-		</mapping> -->
-	<!-- <mapping> <class-name>actions.TransitionAction</class-name> <class-url>GET/transitionaddcardpage</class-url> 
-		</mapping> -->
+	
+	<mapping>
+		<class-name>actions.TransitionTransferMoneyAction</class-name>
+		<class-url>GET/transitionformtransfer</class-url>
+	</mapping>
+	
+	<mapping>
+		<class-name>actions.TransferMoneyAction</class-name>
+		<class-url>POST/transfermoney</class-url>
+	</mapping>
 </site>

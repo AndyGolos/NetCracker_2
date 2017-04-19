@@ -5,9 +5,14 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import beans.userbeans.User;
 
 public class AuthorizationFilter implements Filter {
 
@@ -18,22 +23,22 @@ public class AuthorizationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 
-		/*
-		 * HttpServletRequest req = (HttpServletRequest) request;
-		 * HttpServletResponse resp = (HttpServletResponse) response;
-		 * 
-		 * User user = (User) req.getSession().getAttribute("user"); String url
-		 * = req.getRequestURI();
-		 * 
-		 * System.out.println(url);
-		 * 
-		 * // Фильтр не пашет как надо) if (user != null ||
-		 * url.endsWith("signin") || url.endsWith("registration") ||
-		 * url.endsWith(".js") || url.endsWith(".css")) {
-		 * chain.doFilter(request, response); } else { RequestDispatcher
-		 * requestDispatcher = req.getRequestDispatcher("signin");
-		 * requestDispatcher.forward(req, resp); }
-		 */
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse resp = (HttpServletResponse) response;
+
+		User user = (User) req.getSession().getAttribute("user");
+		String url = req.getRequestURI();
+
+		System.out.println(url);
+
+		// TODO Подредактировать
+		if (user != null || url.endsWith("signin") || url.endsWith("registration") || url.endsWith(".js")
+				|| url.endsWith(".css") || url.endsWith("userpage.do")) {
+			chain.doFilter(request, response);
+		} else {
+			RequestDispatcher requestDispatcher = req.getRequestDispatcher("signin");
+			requestDispatcher.forward(req, resp);
+		}
 
 		/*
 		 * HttpServletRequest req = (HttpServletRequest) request;
@@ -64,7 +69,7 @@ public class AuthorizationFilter implements Filter {
 		 * chain.doFilter(request, response); }
 		 */
 
-		chain.doFilter(request, response);
+		// chain.doFilter(request, response);
 	}
 
 	public void destroy() {

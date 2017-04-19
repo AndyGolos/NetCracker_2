@@ -128,7 +128,18 @@
 		<servlet-name>infopage</servlet-name>
 		<jsp-file>/WEB-INF/pages/infopage.jsp</jsp-file>
 	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>transitionformpage</servlet-name>
+		<url-pattern>/formtransferpage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>transitionformpage</servlet-name>
+		<jsp-file>/WEB-INF/pages/formtransferpage.jsp</jsp-file>
+	</servlet>
 
+<!-- Filters -->
 
 	<filter>
 		<filter-name>EncodingFilter</filter-name>

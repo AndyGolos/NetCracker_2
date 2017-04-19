@@ -76,18 +76,28 @@
 				<button class="btn btn-lg btn-success btn-block formbutt"
 					type="submit">Создать карточку</button>
 			</form>
-			<form action="transitionDeleteCardpage.do">
-				<button class="btn btn-lg btn-danger btn-block formbutt"
-					type="submit">Удалить карточку</button>
-			</form>
-			<form action="">
+			<jsp:useBean id="cards" type="java.util.List<beans.cardbeans.Card>"
+				scope="session" />
+			<c:if test="${fn:length(cards)==0}">
+			</c:if>
+			<c:if test="${fn:length(cards)!=0}">
+				<form action="transitionDeleteCardpage.do">
+					<button class="btn btn-lg btn-danger btn-block formbutt"
+						type="submit">Удалить карточку</button>
+				</form>
+			</c:if>
+			<c:if test="${fn:length(cards)==0}">
+			</c:if>
+			<c:if test="${fn:length(cards)!=0}">
+			<form action="transitionformtransfer.do">
 				<button class="btn btn-lg btn-success btn-block formbutt"
 					type="submit">Перевести деньги</button>
 			</form>
-			<form action="">
+			</c:if>
+			<!-- <form action="">
 				<button class="btn btn-lg btn-success btn-block formbutt"
 					type="submit">Оплата услуг</button>
-			</form>
+			</form> -->
 			<form action="allUsers.do" method="POST">
 				<button class="btn btn-lg btn-success btn-block formbutt"
 					type="submit">Список юзеров(админ)</button>
@@ -95,10 +105,6 @@
 			<form action="transitionunblock.do" method="POST">
 				<button class="btn btn-lg btn-success btn-block formbutt"
 					type="submit">Разблокировать карту(админ)</button>
-			</form>
-			<form action="">
-				<button class="btn btn-lg btn-success btn-block formbutt"
-					type="submit">Создать счёт(админ)</button>
 			</form>
 		</div>
 	</div>
@@ -159,13 +165,16 @@
 							</td>
 							<td>
 								<form action="replenish.do" method="POST">
-									<input type="hidden" name="billid" value="<c:out value="${card.bill.id}"/>" />	
-									<%-- <input type="hidden" name="replenish" value="<c:out value="${card.id}"/>" /> --%>
+									<input type="hidden" name="billid"
+										value="<c:out value="${card.bill.id}"/>" /> <input
+										type="hidden" name="cardid"
+										value="<c:out value="${card.id}"/>" />
 									<c:if test="${card.status}">
-									<button class="btn btn-sm btn-success btn-block" type="submit">Пополнить</button>
+										<button class="btn btn-sm btn-success btn-block" type="submit">Пополнить</button>
 									</c:if>
 									<c:if test="${not card.status}">
-									<button class="btn btn-sm btn-success btn-block" type="submit" disabled>Пополнить</button>
+										<button class="btn btn-sm btn-success btn-block" type="submit"
+											disabled>Пополнить</button>
 									</c:if>
 								</form>
 							</td>

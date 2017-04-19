@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,15 @@
 <title>Sign In</title>
 <link href="static/css/bootstrap.css" rel="stylesheet">
 <link href="static/css/styles.css" rel="stylesheet">
+<style type="text/css">
+.margggg {
+	margin-left: 25px;
+}
+
+.cont {
+	margin-top: 5px;
+}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -52,9 +62,27 @@
 						onclick="return validatesignIn()">Sign in</button>
 				</div>
 			</div>
-
 		</form>
 	</div>
+
+	<c:if test="${empty useremail}">
+	</c:if>
+	<c:if test="${not empty useremail}">
+		<div class="container marg-sign-in col-lg-offset-4 cont">
+			<div class="alert alert-danger col-lg-4 margggg text-center" role="alert">
+				<strong>Введен некорректный логин!</strong>
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${empty userpassword}">
+	</c:if>
+	<c:if test="${not empty userpassword}">
+	<div class="container marg-sign-in col-lg-offset-4 cont">
+		<div class="alert alert-danger col-lg-4 margggg text-center" role="alert">
+			<strong>Введен некорректный пароль!</strong>
+		</div>
+	</div>
+	</c:if>
 
 	<script src="static/js/validation.js" type="text/javascript"></script>
 	<script src="static/js/bootstrap.js" type="text/javascript"></script>
