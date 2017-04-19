@@ -33,13 +33,13 @@
 
 	<div class="container marg-sign-in">
 		<h2 class="form-signin-heading text-center">Создать карточку</h2>
-		<form class="form-horizontal" action="newcardinfo.html">
+		<form class="form-horizontal" action="addcardwithbill.do" method="POST">
 
 
 			<div class="form-group">
 				<label class="control-label col-lg-offset-3 col-lg-1">Тип:</label>
 				<div class="col-lg-4">
-					<select>
+					<select name="type">
 						<c:forEach var="cardType" items="${cardTypes}">
 							<option><c:out value="${cardType.type}" /></option>
 						</c:forEach>
@@ -51,7 +51,7 @@
 				<label class="control-label col-lg-offset-3 col-lg-1" for="password">Пароль:</label>
 				<div class="col-lg-4">
 					<input type="password" class="form-control" id="password"
-						placeholder="Введите пароль" required>
+						placeholder="Введите пароль" name="password" required>
 				</div>
 			</div>
 

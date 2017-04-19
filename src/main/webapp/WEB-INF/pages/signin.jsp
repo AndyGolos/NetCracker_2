@@ -35,7 +35,7 @@
 				<label class="control-label col-lg-offset-3 col-lg-1 " for="E-mail">E-mail:</label>
 				<div class="col-lg-4">
 					<input type="email" class="form-control" id="E-mail"
-						placeholder="Введите e-mail" required>
+						placeholder="Введите e-mail" name="email" required>
 				</div>
 			</div>
 
@@ -43,7 +43,7 @@
 				<label class="control-label col-lg-offset-3 col-lg-1" for="password">Пароль:</label>
 				<div class="col-lg-4">
 					<input type="password" class="form-control" id="password"
-						placeholder="Введите пароль" required>
+						placeholder="Введите пароль" name="password" required>
 				</div>
 			</div>
 			<div class="form-group">

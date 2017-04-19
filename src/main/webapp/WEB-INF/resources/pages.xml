@@ -8,7 +8,7 @@
 
 	<mapping>
 		<class-name>actions.RegisterAction</class-name>
-		<class-url>GET/registration</class-url>
+		<class-url>POST/registration</class-url>
 	</mapping>
 
 	<mapping>
@@ -78,6 +78,21 @@
 	<mapping>
 		<class-name>actions.ReplenishBillAction</class-name>
 		<class-url>POST/replenishbill</class-url>
+	</mapping>
+	
+	<mapping>
+		<class-name>actions.AddCardAction</class-name>
+		<class-url>POST/addcard</class-url>
+	</mapping>
+	
+	<mapping>
+		<class-name>actions.AddCardWithBillAction</class-name>
+		<class-url>POST/addcardwithbill</class-url>
+	</mapping>
+	
+	<mapping>
+		<class-name>actions.AddCardWithBillAction</class-name>
+		<class-url>POST/addcardwithbill</class-url>
 	</mapping>
 	
 

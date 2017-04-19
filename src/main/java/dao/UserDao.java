@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,25 +18,24 @@ public class UserDao extends BaseDaoImpl {
 	private static ResultSet resultSet = null;
 
 	public void add(UserEntity user) {
-		String sqlInsertUser = "insert into user (name,surname,lastname,email,password,date_of_birth,registration) values (?,?,?,?,?,?,?);";
+		String sql = "insert into user (name,surname,lastname,email,password,date_of_birth,registration) values (?,?,?,?,?,?,?);";
 
 		try {
 			connection = ConnectionUtil.getConnection();
-			preparedStatement = connection.prepareStatement(sqlInsertUser);
-
+			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, user.getName());
 			preparedStatement.setString(2, user.getSurname());
 			preparedStatement.setString(3, user.getLastname());
 			preparedStatement.setString(4, user.getEmail());
 			preparedStatement.setString(5, user.getPassword());
 			preparedStatement.setDate(6, Date.valueOf(user.getDateOfBirth()));
-			preparedStatement.setDate(7, Date.valueOf(user.getRegistration()));
+			preparedStatement.setDate(7, Date.valueOf(LocalDate.now()));
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
 			// TODO Logger
 			System.err.println(e);
 		} finally {
-			ConnectionUtil.closeAll(connection, preparedStatement, null);
+			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
 
 	}
@@ -101,6 +101,7 @@ public class UserDao extends BaseDaoImpl {
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
+
 		return userEntity;
 	}
 

@@ -29,14 +29,14 @@
 
 	<div class="container marg-sign-in">
 		<h2 class="form-signin-heading text-center">Создать карточку</h2>
-		<form class="form-horizontal" action="newcardinfo.html">
+		<form class="form-horizontal" action="addcard.do" method="POST">
 
 
 			<div class="form-group">
 				<label class="control-label col-lg-offset-3 col-lg-1">Привязать
 					к счёту:</label>
 				<div class="col-lg-4">
-					<select>
+					<select name="billid">
 						<c:forEach var="id" items="${cardsBills}">
 							<option><c:out value="${id}" /></option>
 						</c:forEach>
@@ -44,31 +44,19 @@
 				</div>
 			</div>
 
-			<!-- <div class="form-group">
-				<label class="control-label col-lg-offset-2 col-lg-2 " for="Bill">Привязать
-					к счёту:</label>
-				<div class="col-lg-4">
-					<input type="text" class="form-control" id="Bill"
-						placeholder="Введите счёт" required>
-				</div>
-			</div> -->
-
-
 			<div class="form-group">
 				<label class="control-label col-lg-offset-2 col-lg-2 "
 					for="Billpass">Пароль от счёта:</label>
 				<div class="col-lg-4">
 					<input type="password" class="form-control" id="Billpass"
-						placeholder="Введите пароль" required>
+						placeholder="Введите пароль" name="billpassword" required>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="control-label col-lg-offset-3 col-lg-1">Тип:</label>
 				<div class="col-lg-4">
-					<select>
-						<!-- class="selectpicker form-control" data-style="btn-success"
-						id="type" -->
+					<select name="type">
 						<c:forEach var="cardType" items="${cardTypes}">
 							<option><c:out value="${cardType.type}" /></option>
 						</c:forEach>
@@ -81,7 +69,7 @@
 					от карточки:</label>
 				<div class="col-lg-4">
 					<input type="password" class="form-control" id="password"
-						placeholder="Введите пароль" required>
+						placeholder="Введите пароль" name="password" required>
 				</div>
 			</div>
 
@@ -98,11 +86,8 @@
 
 	<script src="static/js/bootstrap.js" type="text/javascript"></script>
 	<script src="static/js/validation.js" type="text/javascript"></script>
-	<!-- <script src="http://code.jquery.com/jquery-1.8.3.js"></script> -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script> -->
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script> -->
 
 </body>
 </html>

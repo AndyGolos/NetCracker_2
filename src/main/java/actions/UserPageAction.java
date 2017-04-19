@@ -27,7 +27,10 @@ public class UserPageAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		// Должны приходить со страницы авторизации
 		String email = request.getParameter("email");
-		String password = request.getParameter("email");
+		String password = request.getParameter("password");
+
+		System.out.println(email);
+		System.out.println(password);
 
 		// Инфо юзера
 		UserEntity userEntity = new UserEntity();
@@ -37,8 +40,58 @@ public class UserPageAction implements Action {
 
 		RoleDao roleDao = new RoleDao();
 
-		userEntity.setEmail("andygolosov@mail.ru");
-		userEntity.setPassword("1234");
+		User user = (User) request.getSession().getAttribute("user");
+
+		// ----------------------------------------------------------
+		if (user != null && email == null && password == null) {
+			// Карточки
+			CardDao cardDao = new CardDao();
+			BillDao billDao = new BillDao();
+
+			CardTypeDao typeDao = new CardTypeDao();
+
+			Card cardbean = null;
+			CardBill cardBill = null;
+
+			CardType cardType = null;
+
+			BillEntity billEntity = null;
+
+			List<Card> cardlist = new ArrayList<>();
+
+			List<CardEntity> cardEntities = cardDao.findAllCards(user.getId());
+
+			for (CardEntity cardEntity : cardEntities) {
+				cardbean = new Card();
+				cardBill = new CardBill();
+				cardType = new CardType();
+
+				cardbean.setId(cardEntity.getId());
+				cardbean.setPassword(cardEntity.getPassword());
+				cardbean.setTimeOfRegistration(cardEntity.getRegistration());
+				cardbean.setValidity(cardEntity.getValidity());
+				cardbean.setStatus(cardEntity.getStatus());
+
+				billEntity = billDao.find(cardEntity.getBillId());
+
+				cardBill.setId(billEntity.getId());
+				cardBill.setMoney(billEntity.getMoney());
+				cardBill.setPassword(billEntity.getPassword());
+				cardbean.setBill(cardBill);
+
+				cardType.setType(typeDao.find(cardEntity.getCardType()));
+				cardbean.setType(cardType);
+
+				cardlist.add(cardbean);
+			}
+			request.getSession().setAttribute("cards", cardlist);
+			return "userpage";
+		}
+		// ----------------------------------------------------------
+
+		userEntity.setEmail(email);
+		userEntity.setPassword(password);
+
 		userEntity = userDao.find(userEntity);
 
 		List<RoleEntity> roleEntity = roleDao.find(userEntity.getId());

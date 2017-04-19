@@ -16,24 +16,35 @@ public class CardDao extends BaseDaoImpl {
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
 
-	public void add(CardEntity card) {
+	// Было CardEntity
+	public int add(int userId, int billId, int type, String password, Date registration, Date validity) {
+		int id = -1;
 		String sql = "insert into card (user_id,bill_id,card_type_id,password,registration,validity) values (?,?,?,?,?,?);";
 		try {
 			connection = ConnectionUtil.getConnection();
-			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, card.getUserId());
-			preparedStatement.setInt(2, card.getBillId());
-			preparedStatement.setInt(3, card.getCardType());
-			preparedStatement.setString(4, card.getPassword());
-			preparedStatement.setDate(5, Date.valueOf(card.getRegistration()));
-			preparedStatement.setDate(6, Date.valueOf(card.getValidity()));
+			preparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(2, billId);
+			preparedStatement.setInt(3, type);
+			preparedStatement.setString(4, password);
+			preparedStatement.setDate(5, registration);
+			preparedStatement.setDate(6, validity);
 			preparedStatement.executeUpdate();
+
+			resultSet = preparedStatement.getGeneratedKeys();
+
+			if (resultSet != null && resultSet.next()) {
+				id = resultSet.getInt(1);
+			}
+
 		} catch (Exception e) {
 			// TODO Logger!
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, null);
 		}
+
+		return id;
 	}
 
 	public CardEntity find(int cardid) {

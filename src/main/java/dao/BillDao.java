@@ -13,20 +13,29 @@ public class BillDao extends BaseDaoImpl {
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
 
-	public void add(BillEntity bill) {
-		String sql = "insert into bill (money,password) value (?,?);";
+	// Было CardEntity
+	public int add(String password) {
+		String sql = "insert into bill (password) value (?);";
+		int id = -1;
 		try {
 			connection = ConnectionUtil.getConnection();
-			preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setInt(1, 0);
-			preparedStatement.setString(1, bill.getPassword());
+			preparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			preparedStatement.setString(1, password);
 			preparedStatement.executeUpdate();
+
+			resultSet = preparedStatement.getGeneratedKeys();
+			if (resultSet != null && resultSet.next()) {
+				id = resultSet.getInt(1);
+			}
+
 		} catch (Exception e) {
 			// TODO Logger
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
+
+		return id;
 	}
 
 	// Было CardEntity

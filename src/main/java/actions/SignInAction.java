@@ -7,10 +7,6 @@ public class SignInAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-
-		if (request.getMethod().equals("GET")) {
-			return "signin";
-		} else
-			return null;
+		return "signin";
 	}
 }

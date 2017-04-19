@@ -30,7 +30,7 @@
 	<div class="container marg">
 		<h2 class="form-signin-heading col-lg-offset-5">Please sign up</h2>
 
-		<form class="form-horizontal " action="userpage.do" method="POST">
+		<form class="form-horizontal " action="registration.do" method="POST">
 			<div class="form-group">
 				<label class="control-label col-lg-offset-2 col-lg-2" for="surname">Фамилия:</label>
 				<div class="col-lg-4">

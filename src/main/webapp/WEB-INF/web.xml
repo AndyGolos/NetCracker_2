@@ -118,6 +118,16 @@
 		<servlet-name>replenishCard</servlet-name>
 		<jsp-file>/WEB-INF/pages/replenishCardpage.jsp</jsp-file>
 	</servlet>
+	
+	
+	<servlet-mapping>
+		<servlet-name>infopage</servlet-name>
+		<url-pattern>/infopage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>infopage</servlet-name>
+		<jsp-file>/WEB-INF/pages/infopage.jsp</jsp-file>
+	</servlet>
 
 
 	<filter>
