@@ -25,9 +25,10 @@ public class RegisterAction implements Action {
 		String email = request.getParameter("email");
 		String dateOfBirth = request.getParameter("dateOfBirth");
 		String password = request.getParameter("password");
+		// TODO Пароль
 		// String repeatpassword = request.getParameter("repeatpassword");
 
-		// Валидация---------------------------------------------------
+		// TODO Валидация
 		UserEntity user = new UserEntity();
 		user.setSurname(surname);
 		user.setName(name);

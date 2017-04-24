@@ -13,16 +13,17 @@ public class TransitionTransferMoneyAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-
 		// Наши счета, на которые зарегестрированы карточки
 		@SuppressWarnings("unchecked")
 		List<Card> listOfUserCards = (List<Card>) request.getSession().getAttribute("cards");
-		Set<Integer> cardsBills = new HashSet<>();
+
+		Set<Integer> cardsIds = new HashSet<>();
 
 		for (Card card : listOfUserCards) {
-			cardsBills.add(card.getBill().getId());
+			cardsIds.add(card.getId());
 		}
-		request.getSession().setAttribute("cardsBills", cardsBills);
+
+		request.getSession().setAttribute("cardsIds", cardsIds);
 		return "formtransferpage";
 	}
 

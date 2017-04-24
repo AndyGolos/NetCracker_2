@@ -30,46 +30,21 @@ public class AuthorizationFilter implements Filter {
 		String url = req.getRequestURI();
 
 		System.out.println(url);
+		RequestDispatcher requestDispatcher;
 
 		// TODO Подредактировать
 		if (user != null || url.endsWith("signin") || url.endsWith("registration") || url.endsWith(".js")
-				|| url.endsWith(".css") || url.endsWith("userpage.do")) {
+				|| url.endsWith(".css") || url.endsWith(".eot") || url.endsWith(".svg") || url.endsWith(".ttf")
+				|| url.endsWith(".woff") || url.endsWith(".map") || url.endsWith(".woff2")
+				|| url.endsWith("userpage.do") || url.endsWith("registration.do") || url.endsWith("change.do")) {
+
 			chain.doFilter(request, response);
+
 		} else {
-			RequestDispatcher requestDispatcher = req.getRequestDispatcher("signin");
+			requestDispatcher = req.getRequestDispatcher("signin");
 			requestDispatcher.forward(req, resp);
 		}
 
-		/*
-		 * HttpServletRequest req = (HttpServletRequest) request;
-		 * HttpServletResponse resp = (HttpServletResponse) response;
-		 * 
-		 * HttpSession session = (HttpSession) req.getSession();
-		 * 
-		 * String userrole = (String) session.getAttribute("userrole");
-		 * 
-		 * // User user = (User) session.getAttribute("user");
-		 * 
-		 * System.out.println(req.getServletPath());
-		 * System.out.println(req.getContextPath());
-		 * 
-		 * if (userrole == null) { RequestDispatcher dispatcher;
-		 * session.setAttribute("userrole", "client");
-		 * 
-		 * if (req.getServletPath().equals("/registration")) { dispatcher =
-		 * req.getRequestDispatcher("registration"); dispatcher.forward(req,
-		 * resp); return; } else if (req.getServletPath().equals("/signin") ||
-		 * req.getServletPath().equals("/index.jsp")) { dispatcher =
-		 * ((HttpServletRequest) request).getRequestDispatcher("signin");
-		 * dispatcher.forward(req, resp); return; } else { dispatcher =
-		 * req.getRequestDispatcher("errorpage"); dispatcher.forward(req, resp);
-		 * return; }
-		 * 
-		 * } else { // pass the request along the filter chain
-		 * chain.doFilter(request, response); }
-		 */
-
-		// chain.doFilter(request, response);
 	}
 
 	public void destroy() {

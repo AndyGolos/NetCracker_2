@@ -56,14 +56,49 @@ public class UserService {
 	}
 
 	public UserEntity checkUser(UserEntity user) {
-		UserDao userDao = new UserDao();
 		UserEntity registeredEntity = userDao.find(user);
+		return registeredEntity;
+	}
 
-		if (registeredEntity != null) {
-			return registeredEntity;
-		} else {
-			return null;
+	public List<User> findAllUsers() {
+
+		List<User> users = new ArrayList<>();
+
+		User userbean = null;
+		UserRole userRole = null;
+
+		List<UserEntity> userEntities = userDao.findAllUsers();
+		List<RoleEntity> roleEntity = null;
+		List<UserRole> userRoles = null;
+
+		for (UserEntity userEntity : userEntities) {
+			userbean = new User();
+			userbean.setId(userEntity.getId());
+			userbean.setName(userEntity.getName());
+			userbean.setSurname(userEntity.getSurname());
+			userbean.setLastname(userEntity.getLastname());
+			userbean.setPassword(userEntity.getPassword());
+			userbean.setEmail(userEntity.getEmail());
+
+			roleEntity = roleDao.find(userEntity.getId());
+
+			userRoles = new ArrayList<>();
+
+			for (RoleEntity role : roleEntity) {
+				userRole = new UserRole();
+				userRole.setId(role.getId());
+				userRole.setRole(role.getRole());
+				userRoles.add(userRole);
+			}
+
+			userbean.setRole(userRoles);
+			userbean.setRegistration(userEntity.getRegistration());
+			userbean.setDateOfBirth(userEntity.getDateOfBirth());
+			users.add(userbean);
 		}
+
+		return users;
+
 	}
 
 }

@@ -11,7 +11,6 @@ import beans.userbeans.User;
 public class Card {
 
 	private int id;
-	// TODO Возможно не нужен юзер!
 	private User user;
 	private CardBill bill;
 	private String password;

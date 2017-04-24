@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,8 +12,16 @@
 <title>Delete Card</title>
 
 <link href="static/css/bootstrap.css" rel="stylesheet">
-<link href="static/css/styles.css" rel="stylesheet"  >
+<link href="static/css/styles.css" rel="stylesheet">
+<style type="text/css">
+.margggg {
+	margin-left: 25px;
+}
 
+.cont {
+	margin-top: 5px;
+}
+</style>
 </head>
 <body>
 
@@ -28,7 +37,7 @@
 
 	<div class="container marg-sign-in">
 		<h2 class="form-signin-heading text-center">Удалить карточку</h2>
-		
+
 		<form class="form-horizontal" action="deleteCard.do" method="POST">
 			<div class="form-group">
 				<label class="control-label col-lg-offset-2 col-lg-2" for="password">id
@@ -57,9 +66,34 @@
 		</form>
 	</div>
 
+	<c:if test="${error eq 'password'}">
+		<div class="container marg-sign-in col-lg-offset-4 cont">
+			<div class="alert alert-danger col-lg-4 margggg text-center"
+				role="alert">
+				<strong>Неверно введён пароль!</strong>
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${error eq 'id'}">
+		<div class="container marg-sign-in col-lg-offset-4 cont">
+			<div class="alert alert-danger col-lg-4 margggg text-center"
+				role="alert">
+				<strong>Такой карточки не существует!</strong>
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${error eq 'format'}">
+		<div class="container marg-sign-in col-lg-offset-4 cont">
+			<div class="alert alert-danger col-lg-4 margggg text-center"
+				role="alert">
+				<strong>Введите корректные данные!</strong>
+			</div>
+		</div>
+	</c:if>
 
 
-	<script src="static/js/validation.js" type="text/javascript" ></script>
+
+	<script src="static/js/validation.js" type="text/javascript"></script>
 	<script src="static/js/bootstrap.js" type="text/javascript"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

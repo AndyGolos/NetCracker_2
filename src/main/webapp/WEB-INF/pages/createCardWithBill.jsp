@@ -13,9 +13,15 @@
 
 <link href="static/css/bootstrap.css" rel="stylesheet">
 <link href="static/css/styles.css " rel="stylesheet">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/css/bootstrap-select.min.css"
-	rel="stylesheet">
+<style type="text/css">
+.margggg {
+	margin-left: 25px;
+}
+
+.cont {
+	margin-top: 5px;
+}
+</style>
 </head>
 <body>
 
@@ -61,19 +67,27 @@
 						onclick="return validateAddCard()">Создать</button>
 				</div>
 			</div>
-
 		</form>
 	</div>
+	
+	
+	<c:if test="${not empty error}">
+		<div class="container marg-sign-in col-lg-offset-4 cont">
+			<div class="alert alert-danger col-lg-4 margggg text-center" role="alert">
+			<c:if test="${error eq 'isempty'}">
+				<strong>Введен некорректный пароль!</strong>
+			</c:if>
+			<c:if test="${error eq 'length'}">
+				<strong>Пароль должен содержать минимум 4 символа!</strong>
+			</c:if>
+			</div>
+		</div>
+	</c:if>
 
 	<script src="static/js/validation.js" type="text/javascript"></script>
 	<script src="static/js/bootstrap.js" type="text/javascript"></script>
 
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/i18n/defaults-*.min.js"></script>
-
 </body>
 </html>

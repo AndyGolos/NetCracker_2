@@ -11,6 +11,7 @@ import beans.userbeans.User;
 import dao.BillDao;
 import dao.HistoryDao;
 import entities.BillEntity;
+import entities.CardEntity;
 import entities.UsageHistoryEntity;
 import services.CardService;
 
@@ -20,53 +21,43 @@ public class TransferMoneyAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		CardService cardService = new CardService();
 
-		int billId = Integer.parseInt(request.getParameter("billid"));
-		String billPassword = request.getParameter("billpassword");
-		int billTransferId = Integer.parseInt(request.getParameter("billtransferid"));
+		// TODO валидация(остальное работает)
+		int cardId = Integer.parseInt(request.getParameter("cardid"));
+		String cardPassword = request.getParameter("cardpassword");
+		int cardTransferId = Integer.parseInt(request.getParameter("cardtransferid"));
 		int summ = Integer.parseInt(request.getParameter("summ"));
 
-		BillDao billDao = new BillDao();
-		HistoryDao historyDao = new HistoryDao();
-		UsageHistoryEntity historyEntity = new UsageHistoryEntity();
+		// --------------------------------
 
-		BillEntity billEntity = billDao.find(billId);
+		CardEntity cardEntity = cardService.checkCard(cardId);
+
+		BillDao billDao = new BillDao();
+		BillEntity billEntity = billDao.find(cardEntity.getBillId());
+
 		billDao.setMoney(billEntity, -summ);
 
-		@SuppressWarnings("unchecked")
-		List<Card> cardlist = (List<Card>) request.getSession().getAttribute("cards");
+		HistoryDao historyDao = new HistoryDao();
+		UsageHistoryEntity usageHistoryEntity = new UsageHistoryEntity();
+		usageHistoryEntity.setCardId(cardId);
+		usageHistoryEntity.setOperationTime(LocalDate.now());
+		usageHistoryEntity.setValueChange(String.valueOf(-summ));
+		historyDao.add(usageHistoryEntity);
 
-		for (Card card : cardlist) {
-			if (card.getBill().getId() == billId) {
-				historyEntity.setCardId(card.getId());
-				break;
-			}
-		}
+		cardEntity = cardService.checkCard(cardTransferId);
+		billEntity = billDao.find(cardEntity.getBillId());
 
-		historyEntity.setOperationTime(LocalDate.now());
-		historyEntity.setValueChange(String.valueOf(-summ));
-		historyDao.add(historyEntity);
-
-		// -----------------------сняли
-
-		billEntity = billDao.find(billTransferId);
 		billDao.setMoney(billEntity, summ);
 
-		historyEntity = new UsageHistoryEntity();
-		for (Card card : cardlist) {
-			if (card.getBill().getId() == billTransferId) {
-				historyEntity.setCardId(card.getId());
-				System.out.println(card.getId());
-				break;
-			}
-		}
-
-		historyEntity.setOperationTime(LocalDate.now());
-		historyEntity.setValueChange(String.valueOf(+summ));
-		historyDao.add(historyEntity);
+		usageHistoryEntity = new UsageHistoryEntity();
+		usageHistoryEntity.setCardId(cardTransferId);
+		usageHistoryEntity.setOperationTime(LocalDate.now());
+		usageHistoryEntity.setValueChange("+" + summ);
+		historyDao.add(usageHistoryEntity);
+		// ----------------------------------------
 
 		// Карточки
 		User user = (User) request.getSession().getAttribute("user");
-		cardlist = cardService.findAllUsersCards(user);
+		List<Card> cardlist = cardService.findAllUsersCards(user);
 
 		request.getSession().setAttribute("cards", cardlist);
 		return "userpage";

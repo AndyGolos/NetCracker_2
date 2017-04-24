@@ -30,10 +30,10 @@
 		<form class="form-horizontal " action="transfermoney.do" method="POST">
 			<div class="form-group">
 				<label class="control-label col-lg-offset-2 col-lg-2">Снять
-					со счёта:</label>
+					с карточки:</label>
 				<div class="col-lg-4">
-					<select name="billid">
-						<c:forEach var="id" items="${cardsBills}">
+					<select name="cardid">
+						<c:forEach var="id" items="${cardsIds}">
 							<option><c:out value="${id}" /></option>
 						</c:forEach>
 					</select>
@@ -42,19 +42,19 @@
 
 			<div class="form-group">
 				<label class="control-label col-lg-offset-2 col-lg-2" for="password">Пароль
-					от счёта:</label>
+					от карточки:</label>
 				<div class="col-lg-4">
 					<input type="password" class="form-control" id="password"
-						placeholder="Введите пароль" name="billpassword" required>
+						placeholder="Введите пароль" name="cardpassword" required>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label class="control-label col-lg-offset-2 col-lg-2 " for="bill">На
-					счёт:</label>
+					карточку:</label>
 				<div class="col-lg-4">
 					<input type="text" class="form-control" id="bill"
-						placeholder="Введите счёт" name="billtransferid" required>
+						placeholder="Введите счёт" name="cardtransferid" required>
 				</div>
 			</div>
 
@@ -72,7 +72,6 @@
 						onclick="return validatesignIn()">Перевести</button>
 				</div>
 			</div>
-
 		</form>
 	</div>
 

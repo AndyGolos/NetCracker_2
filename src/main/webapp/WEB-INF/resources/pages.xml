@@ -101,4 +101,10 @@
 		<class-name>actions.TransferMoneyAction</class-name>
 		<class-url>POST/transfermoney</class-url>
 	</mapping>
+	
+	
+	<mapping>
+		<class-name>actions.LanguageChangeAction</class-name>
+		<class-url>POST/change</class-url>
+	</mapping>
 </site>

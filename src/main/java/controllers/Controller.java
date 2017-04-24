@@ -41,16 +41,12 @@ public class Controller extends HttpServlet {
 		Action action = ActionFactory.getAction(request);
 		System.out.println(action);
 
-		/*
-		 * BillDao billDao = new BillDao(); billDao.add("123");
-		 */
-
 		if (action != null) {
 			String view = action.execute(request, response);
 			System.out.println("controller = " + view);
 			request.getRequestDispatcher(view).forward(request, response);
 		} else {
-			request.getRequestDispatcher("error").forward(request, response);
+			request.getRequestDispatcher("errorpage").forward(request, response);
 		}
 
 	}

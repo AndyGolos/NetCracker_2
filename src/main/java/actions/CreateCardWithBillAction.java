@@ -14,7 +14,7 @@ public class CreateCardWithBillAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-
+		// TODO CardTYPESERVICE????
 		// Наши типы карточек (все)
 		CardTypeDao cardTypeDao = new CardTypeDao();
 

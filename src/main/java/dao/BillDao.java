@@ -29,12 +29,10 @@ public class BillDao extends BaseDaoImpl {
 			}
 
 		} catch (Exception e) {
-			// TODO Logger
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
-
 		return id;
 	}
 
@@ -54,7 +52,6 @@ public class BillDao extends BaseDaoImpl {
 				bill.setPassword(resultSet.getString("password"));
 			}
 		} catch (Exception e) {
-			// TODO Logger
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
@@ -72,7 +69,6 @@ public class BillDao extends BaseDaoImpl {
 			preparedStatement.setInt(2, bill.getId());
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
-			// TODO Logger
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);

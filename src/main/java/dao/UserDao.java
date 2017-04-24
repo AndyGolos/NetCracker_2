@@ -73,6 +73,7 @@ public class UserDao extends BaseDaoImpl {
 		return listOfUsers;
 	}
 
+	// TODO мб искать только по email
 	public UserEntity find(UserEntity user) {
 		UserEntity userEntity = null;
 		String sql = "select * from user where user.email = ? and user.password = ?;";

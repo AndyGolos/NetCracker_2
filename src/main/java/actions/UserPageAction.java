@@ -15,15 +15,13 @@ public class UserPageAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		List<Card> cardlist = null;
 		CardService cardService = new CardService();
 		UserService userService = new UserService();
+		List<Card> cardlist = null;
 		User userbean = null;
 
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		System.out.println(email);
-		System.out.println(password);
 
 		UserEntity userEntity = null;
 		userEntity = new UserEntity();
@@ -42,9 +40,7 @@ public class UserPageAction implements Action {
 		// Валидация--------------------------------------------------
 		UserEntity currentUser = userService.checkUser(userEntity);
 		if (currentUser == null) {
-			request.setAttribute("useremail", "error");
-			request.setAttribute("userpassword", "error");
-			System.out.println("Im here");
+			request.setAttribute("currentuser", "user");
 			return "signin";
 		}
 		// ----------------------------------------------------------
@@ -60,7 +56,6 @@ public class UserPageAction implements Action {
 
 		request.getSession().setAttribute("user", userbean);
 		request.getSession().setAttribute("cards", cardlist);
-
 		return "userpage";
 	}
 }

@@ -71,6 +71,7 @@
 		<servlet-name>transitionDeleteCardpage</servlet-name>
 		<jsp-file>/WEB-INF/pages/deleteCardPage.jsp</jsp-file>
 	</servlet>
+
 	<servlet-mapping>
 		<servlet-name>errorpage</servlet-name>
 		<url-pattern>/errorpage</url-pattern>
@@ -79,8 +80,8 @@
 		<servlet-name>errorpage</servlet-name>
 		<jsp-file>/WEB-INF/pages/errorpage.jsp</jsp-file>
 	</servlet>
-	
-	
+
+
 	<servlet-mapping>
 		<servlet-name>history</servlet-name>
 		<url-pattern>/history</url-pattern>
@@ -89,8 +90,8 @@
 		<servlet-name>history</servlet-name>
 		<jsp-file>/WEB-INF/pages/usageHistorypage.jsp</jsp-file>
 	</servlet>
-	
-	
+
+
 	<servlet-mapping>
 		<servlet-name>allUsers</servlet-name>
 		<url-pattern>/allUserspage</url-pattern>
@@ -99,7 +100,7 @@
 		<servlet-name>allUsers</servlet-name>
 		<jsp-file>/WEB-INF/pages/allUserspage.jsp</jsp-file>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>transitionUnblockCard</servlet-name>
 		<url-pattern>/unblockCardpage</url-pattern>
@@ -108,8 +109,8 @@
 		<servlet-name>transitionUnblockCard</servlet-name>
 		<jsp-file>/WEB-INF/pages/unblockCardpage.jsp</jsp-file>
 	</servlet>
-	
-	
+
+
 	<servlet-mapping>
 		<servlet-name>replenishCard</servlet-name>
 		<url-pattern>/replenishCardpage</url-pattern>
@@ -118,8 +119,8 @@
 		<servlet-name>replenishCard</servlet-name>
 		<jsp-file>/WEB-INF/pages/replenishCardpage.jsp</jsp-file>
 	</servlet>
-	
-	
+
+
 	<servlet-mapping>
 		<servlet-name>infopage</servlet-name>
 		<url-pattern>/infopage</url-pattern>
@@ -128,8 +129,8 @@
 		<servlet-name>infopage</servlet-name>
 		<jsp-file>/WEB-INF/pages/infopage.jsp</jsp-file>
 	</servlet>
-	
-	
+
+
 	<servlet-mapping>
 		<servlet-name>transitionformpage</servlet-name>
 		<url-pattern>/formtransferpage</url-pattern>
@@ -139,7 +140,7 @@
 		<jsp-file>/WEB-INF/pages/formtransferpage.jsp</jsp-file>
 	</servlet>
 
-<!-- Filters -->
+	<!-- Filters -->
 
 	<filter>
 		<filter-name>EncodingFilter</filter-name>
@@ -149,7 +150,7 @@
 		<filter-name>AuthorizationFilter</filter-name>
 		<filter-class>filters.AuthorizationFilter</filter-class>
 	</filter>
-	
+
 	<filter-mapping>
 		<filter-name>EncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -160,7 +161,11 @@
 	</filter-mapping>
 
 
-
-
-
+	<!-- JNDI -->
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/NetCracker_2</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
 </web-app>

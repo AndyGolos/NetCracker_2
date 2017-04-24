@@ -1,5 +1,6 @@
 package services;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,9 +33,6 @@ public class CardService {
 
 	// Карточки
 	public List<Card> findAllUsersCards(User user) {
-		cardDao = new CardDao();
-		billDao = new BillDao();
-		typeDao = new CardTypeDao();
 
 		Card cardbean = null;
 		CardBill cardBill = null;
@@ -90,6 +88,24 @@ public class CardService {
 
 		return cardHistories;
 
+	}
+
+	public int addCard(int userId, int billId, int type, String password, Date registration, Date validity) {
+		int cardId = cardDao.add(userId, billId, type, password, registration, validity);
+		return cardId;
+	}
+
+	public void unblockCard(int cardId) {
+		cardDao.unBlockCard(cardId);
+	}
+
+	public CardEntity checkCard(int cardId) {
+		CardEntity cardEntity = cardDao.find(cardId);
+		return cardEntity;
+	}
+
+	public void blockCard(int cardId) {
+		cardDao.blockCard(cardId);
 	}
 
 }

@@ -13,7 +13,15 @@
 
 <link href="static/css/bootstrap.css" rel="stylesheet">
 <link href="static/css/styles.css" rel="stylesheet">
+<style type="text/css">
+.margggg {
+	margin-left: 25px;
+}
 
+.cont {
+	margin-top: 5px;
+}
+</style>
 </head>
 <body>
 
@@ -56,6 +64,19 @@
 			</div>
 		</form>
 	</div>
+	
+	<c:if test="${not empty error}">
+		<div class="container marg-sign-in col-lg-offset-4 cont">
+			<div class="alert alert-danger col-lg-4 margggg text-center" role="alert">
+			<c:if test="${error eq 'format'}">
+				<strong>Введена неккоректная сумма!</strong>
+			</c:if>
+			<c:if test="${error eq 'password'}">
+				<strong>Введен неверный пароль!</strong>
+			</c:if>
+			</div>
+		</div>
+	</c:if>
 
 
 

@@ -72,51 +72,55 @@
 		</div>
 
 		<div class="row col-lg-3 col-lg-offset-1 ">
-			<form action="transitionAddCardpage.do">
-				<button class="btn btn-lg btn-success btn-block formbutt"
-					type="submit">Создать карточку</button>
-			</form>
-			<jsp:useBean id="cards" type="java.util.List<beans.cardbeans.Card>"
-				scope="session" />
-			<c:if test="${fn:length(cards)==0}">
-			</c:if>
-			<c:if test="${fn:length(cards)!=0}">
-				<form action="transitionDeleteCardpage.do">
-					<button class="btn btn-lg btn-danger btn-block formbutt"
-						type="submit">Удалить карточку</button>
-				</form>
-			</c:if>
-			<c:if test="${fn:length(cards)==0}">
-			</c:if>
-			<c:if test="${fn:length(cards)!=0}">
-			<form action="transitionformtransfer.do">
-				<button class="btn btn-lg btn-success btn-block formbutt"
-					type="submit">Перевести деньги</button>
-			</form>
-			</c:if>
-			<!-- <form action="">
+			<c:forEach var="role" items="${user.role}">
+				<c:if test="${role.role eq 'Клиент'}">
+					<form action="transitionAddCardpage.do">
+						<button class="btn btn-lg btn-success btn-block formbutt"
+							type="submit">Создать карточку</button>
+					</form>
+					<jsp:useBean id="cards" type="java.util.List<beans.cardbeans.Card>"
+						scope="session" />
+					<c:if test="${fn:length(cards)==0}">
+					</c:if>
+					<c:if test="${fn:length(cards)!=0}">
+						<form action="transitionDeleteCardpage.do">
+							<button class="btn btn-lg btn-danger btn-block formbutt"
+								type="submit">Удалить карточку</button>
+						</form>
+					</c:if>
+					<c:if test="${fn:length(cards)==0}">
+					</c:if>
+					<c:if test="${fn:length(cards)!=0}">
+						<form action="transitionformtransfer.do">
+							<button class="btn btn-lg btn-success btn-block formbutt"
+								type="submit">Перевести деньги</button>
+						</form>
+					</c:if>
+					<!-- <form action="">
 				<button class="btn btn-lg btn-success btn-block formbutt"
 					type="submit">Оплата услуг</button>
 			</form> -->
-			<form action="allUsers.do" method="POST">
-				<button class="btn btn-lg btn-success btn-block formbutt"
-					type="submit">Список юзеров(админ)</button>
-			</form>
-			<form action="transitionunblock.do" method="POST">
-				<button class="btn btn-lg btn-success btn-block formbutt"
-					type="submit">Разблокировать карту(админ)</button>
-			</form>
+				</c:if>
+				<c:if test="${role.role eq 'Администратор'}">
+					<form action="allUsers.do" method="POST">
+						<button class="btn btn-lg btn-success btn-block formbutt"
+							type="submit">Список юзеров</button>
+					</form>
+					<form action="transitionunblock.do" method="POST">
+						<button class="btn btn-lg btn-success btn-block formbutt"
+							type="submit">Разблокировать карту	</button>
+					</form>
+				</c:if>
+			</c:forEach>
 		</div>
 	</div>
 
-	<!-- и тут не было  col-lg-12-->
+
 	<div class="container col-lg-12">
-		<!-- Было row  col-lg-12-->
 		<div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<!-- Всё было по 2 до кнопок! -->
 						<th class="col-lg-1 text-center">#id</th>
 						<th class="col-lg-1 text-center">Тип</th>
 						<th class="col-lg-1 text-center">Счёт</th>
@@ -185,7 +189,7 @@
 		</div>
 	</div>
 
-	<!-- <script src="static/js/bootstrap.js" type="text/javascript"></script> -->
+	<script src="static/js/bootstrap.js" type="text/javascript"></script>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>

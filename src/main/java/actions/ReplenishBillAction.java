@@ -1,7 +1,5 @@
 package actions;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,10 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.cardbeans.Card;
 import beans.userbeans.User;
-import dao.BillDao;
-import dao.HistoryDao;
-import entities.BillEntity;
-import entities.UsageHistoryEntity;
+import entities.CardEntity;
+import services.BillService;
 import services.CardService;
 
 public class ReplenishBillAction implements Action {
@@ -21,27 +17,44 @@ public class ReplenishBillAction implements Action {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 
 		CardService cardService = new CardService();
+		BillService billService = new BillService();
 
 		int billId = Integer.parseInt(request.getParameter("billid"));
-		int summ = Integer.parseInt(request.getParameter("summ"));
-		int cardid = Integer.parseInt(request.getParameter("cardid"));
+		String stringSumm = request.getParameter("summ");
+		int cardId = Integer.parseInt(request.getParameter("cardid"));
+		String password = request.getParameter("password");
+		int summ = -1;
 
-		// --------------------------------------------------------------------
-		BillDao billDao = new BillDao();
-		BillEntity billEntity = billDao.find(billId);
-		billDao.setMoney(billEntity, summ);
+		// TODO Работает Валидация
+		boolean valid = true;
+		try {
+			summ = Integer.parseInt(stringSumm);
+		} catch (NumberFormatException e) {
+			request.setAttribute("error", "format");
+			valid = false;
+		}
 
-		HistoryDao historyDao = new HistoryDao();
-		UsageHistoryEntity historyEntity = new UsageHistoryEntity();
-		historyEntity.setCardId(cardid);
-		historyEntity.setOperationTime(LocalDate.now());
-		historyEntity.setValueChange("+" + summ);
-		historyDao.add(historyEntity);
-		// --------------------------------------------------------------------
+		if (!valid) {
+			return "replenishCardpage";
+		}
 
-		List<Card> cardlist = new ArrayList<>();
+		CardEntity cardEntity = cardService.checkCard(cardId);
+
+		if (!cardEntity.getPassword().equals(password)) {
+			request.setAttribute("error", "password");
+			valid = false;
+		}
+
+		if (!valid) {
+			return "replenishCardpage";
+		}
+		// -----------------------
+
+		// Пополняем счёт
+		billService.replenishBill(billId, summ, cardId);
+
 		User user = (User) request.getSession().getAttribute("user");
-		cardlist = cardService.findAllUsersCards(user);
+		List<Card> cardlist = cardService.findAllUsersCards(user);
 
 		request.getSession().setAttribute("cards", cardlist);
 		return "userpage";

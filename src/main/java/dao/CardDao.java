@@ -72,7 +72,7 @@ public class CardDao extends BaseDaoImpl {
 			// TODO Logger!
 			System.err.println(e);
 		} finally {
-			ConnectionUtil.closeAll(connection, preparedStatement, null);
+			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
 
 		return cardEntity;
