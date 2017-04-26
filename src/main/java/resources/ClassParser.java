@@ -21,7 +21,6 @@ public class ClassParser {
 			saxParser.parse(inputFile, mappingHandler);
 			classHandler = mappingHandler.bridge(mappingHandler.getClassUrls(), mappingHandler.getClassNames());
 		} catch (Exception e) {
-			// TODO Logger
 			System.err.println(e);
 		}
 		return classHandler;

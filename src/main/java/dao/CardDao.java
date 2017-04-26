@@ -16,7 +16,6 @@ public class CardDao extends BaseDaoImpl {
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
 
-	// Было CardEntity
 	public int add(int userId, int billId, int type, String password, Date registration, Date validity) {
 		int id = -1;
 		String sql = "insert into card (user_id,bill_id,card_type_id,password,registration,validity) values (?,?,?,?,?,?);";
@@ -36,12 +35,10 @@ public class CardDao extends BaseDaoImpl {
 			if (resultSet != null && resultSet.next()) {
 				id = resultSet.getInt(1);
 			}
-
 		} catch (Exception e) {
-			// TODO Logger!
 			System.err.println(e);
 		} finally {
-			ConnectionUtil.closeAll(connection, preparedStatement, null);
+			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
 
 		return id;
@@ -69,7 +66,6 @@ public class CardDao extends BaseDaoImpl {
 				cardEntity.setValidity(resultSet.getDate("validity").toLocalDate());
 			}
 		} catch (Exception e) {
-			// TODO Logger!
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
@@ -78,21 +74,8 @@ public class CardDao extends BaseDaoImpl {
 		return cardEntity;
 	}
 
-	// Было UserEntity
 	public List<CardEntity> findAllCards(int id) {
 		CardEntity cardEntity = null;
-		/*
-		 * String sql =
-		 * "select card.id, card.bill_id , card.card_type_id, card.status, bill.money, card.validity from"
-		 * + " card,bill,user where user.email = ? and user.password = ?; ";
-		 */
-
-		/*
-		 * String sql =
-		 * "select card.id, card.bill_id , card.card_type_id, card.status, bill.money, card.validity from"
-		 * + " card,bill,user where user.id = ?; ";
-		 */
-
 		String sql = "select * from  card where card.user_id = ?;";
 		List<CardEntity> listOfCards = new ArrayList<>();
 
@@ -116,7 +99,6 @@ public class CardDao extends BaseDaoImpl {
 				listOfCards.add(cardEntity);
 			}
 		} catch (Exception e) {
-			// TODO Logger
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
@@ -124,7 +106,6 @@ public class CardDao extends BaseDaoImpl {
 		return listOfCards;
 	}
 
-	// Было CardEntity
 	public void blockCard(int id) {
 		String sql = "update card set status = false where card.id = ?;";
 		try {
@@ -133,14 +114,12 @@ public class CardDao extends BaseDaoImpl {
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
-			// TODO Logger
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
 	}
 
-	// Было CardEntity
 	public void unBlockCard(int cardId) {
 		String sql = "update card set status = true where card.id = ?;";
 		try {
@@ -149,14 +128,12 @@ public class CardDao extends BaseDaoImpl {
 			preparedStatement.setInt(1, cardId);
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
-			// TODO Logger
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
 	}
 
-	// Было CardEntity
 	public void delete(int cardId) {
 		String sql = "delete from card where card.id = ?;";
 		try {
@@ -165,7 +142,6 @@ public class CardDao extends BaseDaoImpl {
 			preparedStatement.setInt(1, cardId);
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
-			// TODO Logger
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);

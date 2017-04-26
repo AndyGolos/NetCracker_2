@@ -1,8 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<fmt:requestEncoding value="UTF-8" />
+
+<c:if test="${empty language}">
+	<fmt:setLocale value="ru_RU" />
+</c:if>
+<c:if test="${not empty language}">
+	<fmt:setLocale value="${language}" />
+</c:if>
+<fmt:setBundle basename="com.Golosov.i18n.i18n" />
+
 <!DOCTYPE html>
-<html>
+<html lang="${language}">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,7 +31,7 @@
 		<div class="row">
 			<div class="navbar navbar-inverse ">
 				<h3 class="col-lg-4">Payment System Manager</h3>
-				<a class="btn btn-primary col-lg-offset-7" href="userpage" >Назад</a>
+				<a class="btn btn-primary col-lg-offset-7" href="userpage"><fmt:message key="historypage.button.back" /></a>
 			</div>
 		</div>
 	</div>
@@ -29,28 +40,26 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th class="col-lg-2 text-center">#id</th>
-						<th class="col-lg-2 text-center">#Card id</th>
-						<th class="col-lg-2 text-center">operationTime</th>
-						<th class="col-lg-2 text-center">valueChange</th>
+						<th class="col-lg-2 text-center"><fmt:message key="historypage.label.id" /></th>
+						<th class="col-lg-2 text-center"><fmt:message key="historypage.label.cardid" /></th>
+						<th class="col-lg-2 text-center"><fmt:message key="historypage.label.time" /></th>
+						<th class="col-lg-2 text-center"><fmt:message key="historypage.label.change" /></th>
 					</tr>
 				</thead>
 				<tbody class=" text-center">
-				<c:forEach var="history" items="${histories}">
-					<tr>
-						<td><c:out value="${history.id}"/></td>
-						<td><c:out value="${history.cardId}"/></td>
-						<td><c:out value="${history.operationTime}"/></td>
-						<td><c:out value="${history.valueChange}"/></td>
-					</tr>
-				</c:forEach>
+					<c:forEach var="history" items="${histories}">
+						<tr>
+							<td><c:out value="${history.id}" /></td>
+							<td><c:out value="${history.cardId}" /></td>
+							<td><c:out value="${history.operationTime}" /></td>
+							<td><c:out value="${history.valueChange}" /></td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	
 	<script src="static/js/bootstrap.js" type="text/javascript"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>
 </html>

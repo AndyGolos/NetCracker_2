@@ -1,8 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html >
-<html>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<fmt:requestEncoding value="UTF-8" />
+
+<c:if test="${empty language}">
+	<fmt:setLocale value="ru_RU" />
+</c:if>
+<c:if test="${not empty language}">
+	<fmt:setLocale value="${language}" />
+</c:if>
+<fmt:setBundle basename="com.Golosov.i18n.i18n" />
+
+<!DOCTYPE html>
+<html lang="${language}">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,7 +33,7 @@
 		<div class="row ">
 			<div class="navbar navbar-inverse ">
 				<h3 class="col-lg-4">Payment System Manager</h3>
-				<a class="btn btn-primary col-lg-offset-7 " href="userpage">Назад</a>
+				<a class="btn btn-primary col-lg-offset-7 " href="userpage"><fmt:message key="alluserspage.button.back" /></a>
 			</div>
 		</div>
 	</div>
@@ -32,13 +44,13 @@
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th class="col-lg-1 text-center">#id</th>
-						<th class="col-lg-1 text-center">Фамилия</th>
-						<th class="col-lg-1 text-center">Имя</th>
-						<th class="col-lg-1 text-center">Отчество</th>
-						<th class="col-lg-1 text-center">Email</th>
-						<th class="col-lg-1 text-center">Дата рождения</th>
-						<th class="col-lg-1 text-center">Дата регистрации</th>
+						<th class="col-lg-1 text-center"><fmt:message key="alluserspage.label.id" /></th>
+						<th class="col-lg-1 text-center"><fmt:message key="alluserspage.label.surname" /></th>
+						<th class="col-lg-1 text-center"><fmt:message key="alluserspage.label.name" /></th>
+						<th class="col-lg-1 text-center"><fmt:message key="alluserspage.label.lastname" /></th>
+						<th class="col-lg-1 text-center"><fmt:message key="alluserspage.label.email" /></th>
+						<th class="col-lg-1 text-center"><fmt:message key="alluserspage.label.dateofbirth" /></th>
+						<th class="col-lg-1 text-center"><fmt:message key="alluserspage.label.registration" /></th>
 					</tr>
 				</thead>
 				<tbody class=" text-center">

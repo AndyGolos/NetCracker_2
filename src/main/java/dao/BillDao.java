@@ -13,7 +13,6 @@ public class BillDao extends BaseDaoImpl {
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
 
-	// Было CardEntity
 	public int add(String password) {
 		String sql = "insert into bill (password) value (?);";
 		int id = -1;
@@ -36,7 +35,6 @@ public class BillDao extends BaseDaoImpl {
 		return id;
 	}
 
-	// Было CardEntity
 	public BillEntity find(int billId) {
 		BillEntity bill = null;
 		String sql = "select * from bill where bill.id = ?;";
@@ -59,7 +57,6 @@ public class BillDao extends BaseDaoImpl {
 		return bill;
 	}
 
-	// Было BillEntity
 	public void setMoney(BillEntity bill, int money) {
 		String sqlset = "update bill set money = ? where bill.id = ?;";
 		try {

@@ -1,12 +1,12 @@
 package entities;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 
 public class UsageHistoryEntity extends AbstractEntity {
 
 	private int id;
 	private int cardId;
-	private LocalDate operationTime;
+	private Timestamp operationTime;
 	private String valueChange;
 
 	public UsageHistoryEntity() {
@@ -19,7 +19,7 @@ public class UsageHistoryEntity extends AbstractEntity {
 	 * @param operationTime
 	 * @param valueChange
 	 */
-	public UsageHistoryEntity(int id, int cardId, LocalDate operationTime, String valueChange) {
+	public UsageHistoryEntity(int id, int cardId, Timestamp operationTime, String valueChange) {
 		super();
 		this.id = id;
 		this.cardId = cardId;
@@ -60,7 +60,7 @@ public class UsageHistoryEntity extends AbstractEntity {
 	/**
 	 * @return the operationTime
 	 */
-	public LocalDate getOperationTime() {
+	public Timestamp getOperationTime() {
 		return operationTime;
 	}
 
@@ -68,7 +68,7 @@ public class UsageHistoryEntity extends AbstractEntity {
 	 * @param operationTime
 	 *            the operationTime to set
 	 */
-	public void setOperationTime(LocalDate operationTime) {
+	public void setOperationTime(Timestamp operationTime) {
 		this.operationTime = operationTime;
 	}
 

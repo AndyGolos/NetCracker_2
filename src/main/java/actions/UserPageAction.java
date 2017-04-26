@@ -15,8 +15,10 @@ public class UserPageAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+
 		CardService cardService = new CardService();
 		UserService userService = new UserService();
+
 		List<Card> cardlist = null;
 		User userbean = null;
 

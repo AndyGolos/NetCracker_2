@@ -30,6 +30,7 @@ public class AuthorizationFilter implements Filter {
 		String url = req.getRequestURI();
 
 		System.out.println(url);
+		System.out.println(user);
 		RequestDispatcher requestDispatcher;
 
 		// TODO Подредактировать

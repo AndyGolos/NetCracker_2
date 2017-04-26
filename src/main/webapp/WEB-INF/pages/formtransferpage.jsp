@@ -1,8 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<fmt:requestEncoding value="UTF-8" />
+
+<c:if test="${empty language}">
+	<fmt:setLocale value="ru_RU" />
+</c:if>
+<c:if test="${not empty language}">
+	<fmt:setLocale value="${language}" />
+</c:if>
+<fmt:setBundle basename="com.Golosov.i18n.i18n" />
+
 <!DOCTYPE html>
-<html>
+<html lang="${language}">
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -13,6 +24,15 @@
 
 <link href="static/css/bootstrap.css" rel="stylesheet">
 <link href="static/css/styles.css" rel="stylesheet">
+<style type="text/css">
+.margggg {
+	margin-left: 25px;
+}
+
+.cont {
+	margin-top: 5px;
+}
+</style>
 
 </head>
 <body>
@@ -20,17 +40,18 @@
 		<div class="row">
 			<div class="navbar navbar-inverse ">
 				<h3 class="col-lg-4">Payment System Manager</h3>
-				<a class="btn btn-primary col-lg-offset-7" href="userpage">Назад</a>
+				<a class="btn btn-primary col-lg-offset-7" href="userpage"><fmt:message key="transferpage.button.back" /></a>
 			</div>
 		</div>
 	</div>
 	<div class="container marg-sign-in">
-		<h2 class="form-signin-heading  text-center">Перевод</h2>
+		<h2 class="form-signin-heading  text-center">
+			<fmt:message key="transferpage.label.transfer" />
+		</h2>
 
 		<form class="form-horizontal " action="transfermoney.do" method="POST">
 			<div class="form-group">
-				<label class="control-label col-lg-offset-2 col-lg-2">Снять
-					с карточки:</label>
+				<label class="control-label col-lg-offset-2 col-lg-2"><fmt:message key="transferpage.label.cardid" /></label>
 				<div class="col-lg-4">
 					<select name="cardid">
 						<c:forEach var="id" items="${cardsIds}">
@@ -41,43 +62,65 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-offset-2 col-lg-2" for="password">Пароль
-					от карточки:</label>
+				<label class="control-label col-lg-offset-2 col-lg-2" for="password"><fmt:message
+						key="transferpage.label.cardpass" /></label>
 				<div class="col-lg-4">
 					<input type="password" class="form-control" id="password"
-						placeholder="Введите пароль" name="cardpassword" required>
+						placeholder="<fmt:message key="transferpage.placeholder.cardpassword" />" name="cardpassword" required>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-offset-2 col-lg-2 " for="bill">На
-					карточку:</label>
+				<label class="control-label col-lg-offset-2 col-lg-2 " for="bill"><fmt:message
+						key="transferpage.label.cardtransferid" /></label>
 				<div class="col-lg-4">
 					<input type="text" class="form-control" id="bill"
-						placeholder="Введите счёт" name="cardtransferid" required>
+						placeholder="<fmt:message key="transferpage.placeholder.cardid" />" name="cardtransferid" required>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-offset-2 col-lg-2 " for="summ">Сумма:</label>
+				<label class="control-label col-lg-offset-2 col-lg-2 " for="summ"><fmt:message key="transferpage.label.summ" /></label>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" id="summ"
-						placeholder="Введите сумму" name="summ" required>
+					<input type="text" class="form-control" id="summ" placeholder="<fmt:message key="transferpage.placeholder.summ" />"
+						name="summ" required>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<div class="col-lg-2 col-lg-offset-5">
-					<button class="btn btn-lg btn-primary btn-block" type="submit"
-						onclick="return validatesignIn()">Перевести</button>
+					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validatesignIn()">
+						<fmt:message key="transferpage.button.transfer" />
+					</button>
 				</div>
 			</div>
 		</form>
 	</div>
 
+	<c:if test="${not empty error}">
+		<div class="container marg-sign-in col-lg-offset-4 cont">
+			<div class="alert alert-danger col-lg-4 margggg text-center" role="alert">
+				<c:if test="${error eq 'incorrectpass'}">
+					<strong><fmt:message key="transferpage.error.incorrectpass" /></strong>
+				</c:if>
+				<c:if test="${error eq 'incorrectcardid'}">
+					<strong><fmt:message key="transferpage.error.incorrectcardid" /></strong>
+				</c:if>
+				<c:if test="${error eq 'unexsistcard'}">
+					<strong><fmt:message key="transferpage.error.unexsistcard" /></strong>
+				</c:if>
+				<c:if test="${error eq 'incorrectsumm'}">
+					<strong><fmt:message key="transferpage.error.incorrectsumm" /></strong>
+				</c:if>
+				<c:if test="${error eq 'lowmoney'}">
+					<strong><fmt:message key="transferpage.error.lowmoney" /></strong>
+				</c:if>
+			</div>
+		</div>
+	</c:if>
+
 	<script src="static/js/bootstrap.js" type="text/javascript"></script>
 	<script src="static/js/validation.js" type="text/javascript"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </body>
 </html>

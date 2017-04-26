@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import beans.CardBill;
-import beans.CardHistory;
 import beans.CardType;
 import beans.cardbeans.Card;
 import beans.userbeans.User;
@@ -31,7 +30,6 @@ public class CardService {
 		historyDao = new HistoryDao();
 	}
 
-	// Карточки
 	public List<Card> findAllUsersCards(User user) {
 
 		Card cardbean = null;
@@ -70,26 +68,6 @@ public class CardService {
 		return cardlist;
 	}
 
-	public List<CardHistory> findCardsHistory(int cardId) {
-
-		CardHistory cardHistory = null;
-		List<CardHistory> cardHistories = new ArrayList<>();
-
-		List<UsageHistoryEntity> historylist = historyDao.findAll(cardId);
-
-		for (UsageHistoryEntity usageHistoryEntity : historylist) {
-			cardHistory = new CardHistory();
-			cardHistory.setCardId(usageHistoryEntity.getCardId());
-			cardHistory.setId(usageHistoryEntity.getId());
-			cardHistory.setOperationTime(usageHistoryEntity.getOperationTime());
-			cardHistory.setValueChange(usageHistoryEntity.getValueChange());
-			cardHistories.add(cardHistory);
-		}
-
-		return cardHistories;
-
-	}
-
 	public int addCard(int userId, int billId, int type, String password, Date registration, Date validity) {
 		int cardId = cardDao.add(userId, billId, type, password, registration, validity);
 		return cardId;
@@ -106,6 +84,29 @@ public class CardService {
 
 	public void blockCard(int cardId) {
 		cardDao.blockCard(cardId);
+	}
+
+	public void replenishCard(int cardId, String cardPassword, int cardTransferId, int summ) {
+		CardEntity cardEntity = checkCard(cardId);
+
+		BillEntity billEntity = billDao.find(cardEntity.getBillId());
+
+		billDao.setMoney(billEntity, -summ);
+
+		UsageHistoryEntity usageHistoryEntity = new UsageHistoryEntity();
+		usageHistoryEntity.setCardId(cardId);
+		usageHistoryEntity.setValueChange(String.valueOf(-summ));
+		historyDao.add(usageHistoryEntity);
+
+		cardEntity = checkCard(cardTransferId);
+		billEntity = billDao.find(cardEntity.getBillId());
+
+		billDao.setMoney(billEntity, summ);
+
+		usageHistoryEntity = new UsageHistoryEntity();
+		usageHistoryEntity.setCardId(cardTransferId);
+		usageHistoryEntity.setValueChange("+" + summ);
+		historyDao.add(usageHistoryEntity);
 	}
 
 }

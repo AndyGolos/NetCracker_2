@@ -6,18 +6,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import beans.CardHistory;
-import services.CardService;
+import services.CardHistoryService;
 
 public class WatchUsageHistoryAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		CardService cardService = new CardService();
+		CardHistoryService cardHistoryService = new CardHistoryService();
 
 		int cardId = Integer.parseInt(request.getParameter("history"));
 
-		// TODO История карточки? Возможно нужно создать и historyService
-		List<CardHistory> cardHistories = cardService.findCardsHistory(cardId);
+		List<CardHistory> cardHistories = cardHistoryService.findCardsHistory(cardId);
 
 		request.getSession().setAttribute("histories", cardHistories);
 		return "history";

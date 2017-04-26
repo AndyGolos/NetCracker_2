@@ -57,7 +57,6 @@
 				<h3 class="col-lg-4">Payment System Manager</h3>
 				<p class="lang pformbut col-lg-2 col-lg-offset-3 text-right">
 					<fmt:message key="login.label.submitchangelanguage" />
-					:
 				</p>
 				<form class="col-lg-1 formbut " action="change.do" method="POST">
 					<c:if test="${empty language}">
@@ -127,19 +126,10 @@
 	<c:if test="${not empty currentuser}">
 		<div class="container marg-sign-in col-lg-offset-4 cont">
 			<div class="alert alert-danger col-lg-4 margggg text-center" role="alert">
-					<strong><fmt:message key="login.error" /></strong>
+				<strong><fmt:message key="login.error" /></strong>
 			</div>
 		</div>
 	</c:if>
-	<%-- <c:if test="${empty userpassword}">
-	</c:if>
-	<c:if test="${not empty userpassword}">
-	<div class="container marg-sign-in col-lg-offset-4 cont">
-		<div class="alert alert-danger col-lg-4 margggg text-center" role="alert">
-			<strong>Введен некорректный пароль!</strong>
-		</div>
-	</div>
-	</c:if> --%>
 
 	<script src="static/js/validation.js" type="text/javascript"></script>
 	<script src="static/js/bootstrap.js" type="text/javascript"></script>

@@ -2,24 +2,24 @@ package actions;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.CardType;
 import beans.userbeans.User;
-import dao.CardDao;
 import services.BillService;
+import services.CardService;
 
 public class AddCardWithBillAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		BillService billService = new BillService();
+		CardService cardService = new CardService();
 
 		String type = request.getParameter("type");
+		int cardTypeId = Integer.parseInt(request.getParameter(type));
 		String password = request.getParameter("password");
 
 		// Валидация--------------------------
@@ -34,31 +34,31 @@ public class AddCardWithBillAction implements Action {
 		}
 
 		if (password.length() < 4) {
-			request.setAttribute("error", "length");
+			request.setAttribute("error", "lowlength");
 			valid = false;
 		}
 
 		if (!valid) {
 			return "createCardWithBill";
 		}
-		// Валидация-----------------------
-		int billId = billService.addBill(password);
 
-		// TODO Повторяющийся код
-		@SuppressWarnings("unchecked")
-		List<CardType> cardTypes = (List<CardType>) request.getSession().getAttribute("cardTypes");
-		User user = (User) request.getSession().getAttribute("user");
-
-		int typeId = 0;
-		for (CardType cardType : cardTypes) {
-			if (cardType.getType().equals(type)) {
-				typeId = cardType.getId();
-				break;
-			}
+		if (password.length() > 20) {
+			request.setAttribute("error", "biglength");
+			valid = false;
 		}
 
-		CardDao cardDao = new CardDao();
-		int cardid = cardDao.add(user.getId(), billId, typeId, password, Date.valueOf(LocalDate.now()),
+		if (!valid) {
+			return "createCardWithBill";
+		}
+		// ------------------------------
+
+		// Создание счёта и получение созданного id
+		int billId = billService.addBill(password);
+
+		User user = (User) request.getSession().getAttribute("user");
+
+		// Создание карточки и получение созданного id
+		int cardid = cardService.addCard(user.getId(), billId, cardTypeId, password, Date.valueOf(LocalDate.now()),
 				Date.valueOf(LocalDate.now().plusYears(5)));
 
 		request.setAttribute("id", cardid);
@@ -78,5 +78,4 @@ public class AddCardWithBillAction implements Action {
 		}
 		return password;
 	}
-
 }

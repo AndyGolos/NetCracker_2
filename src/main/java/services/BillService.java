@@ -1,7 +1,5 @@
 package services;
 
-import java.time.LocalDate;
-
 import dao.BillDao;
 import dao.HistoryDao;
 import entities.BillEntity;
@@ -29,7 +27,6 @@ public class BillService {
 
 		UsageHistoryEntity historyEntity = new UsageHistoryEntity();
 		historyEntity.setCardId(cardId);
-		historyEntity.setOperationTime(LocalDate.now());
 		historyEntity.setValueChange("+" + summ);
 		historyDao.add(historyEntity);
 	}

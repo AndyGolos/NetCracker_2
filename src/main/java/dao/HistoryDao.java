@@ -1,10 +1,11 @@
 package dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import entities.UsageHistoryEntity;
@@ -23,19 +24,16 @@ public class HistoryDao extends BaseDaoImpl {
 			connection = ConnectionUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, history.getCardId());
-			// TODO Надо добавить не только год-месяц-день но и время операции
-			preparedStatement.setDate(2, Date.valueOf(history.getOperationTime()));
+			preparedStatement.setTimestamp(2, new Timestamp(new Date().getTime()));
 			preparedStatement.setString(3, history.getValueChange());
 			preparedStatement.executeUpdate();
 		} catch (Exception e) {
-			// TODO Logger!
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, null);
 		}
 	}
 
-	// Было CardEntity
 	public List<UsageHistoryEntity> findAll(int id) {
 		List<UsageHistoryEntity> listOfHistories = new ArrayList<>();
 		String sql = "select * from usage_history where usage_history.card_id = ?;";
@@ -49,14 +47,11 @@ public class HistoryDao extends BaseDaoImpl {
 				UsageHistoryEntity historyEntity = new UsageHistoryEntity();
 				historyEntity.setId(resultSet.getInt("id"));
 				historyEntity.setCardId(resultSet.getInt("card_id"));
-				// TODO Надо добавить не только год-месяц-день но и время
-				// операции
-				historyEntity.setOperationTime(resultSet.getDate("operation_time").toLocalDate());
+				historyEntity.setOperationTime(resultSet.getTimestamp("operation_time"));
 				historyEntity.setValueChange(resultSet.getString("value_change"));
 				listOfHistories.add(historyEntity);
 			}
 		} catch (Exception e) {
-			// TODO Logger!
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);

@@ -20,8 +20,8 @@ public class UserService {
 	}
 
 	public void addUser(UserEntity userEntity) {
-		userDao.add(userEntity);
-		roleDao.add(userEntity);
+		int userId = userDao.add(userEntity);
+		roleDao.add(userId);
 	}
 
 	public User findUserInfo(UserEntity userEntity) {
@@ -57,7 +57,10 @@ public class UserService {
 
 	public UserEntity checkUser(UserEntity user) {
 		UserEntity registeredEntity = userDao.find(user);
-		return registeredEntity;
+		if (!registeredEntity.getPassword().equals(user.getPassword())) {
+			return null;
+		} else
+			return registeredEntity;
 	}
 
 	public List<User> findAllUsers() {

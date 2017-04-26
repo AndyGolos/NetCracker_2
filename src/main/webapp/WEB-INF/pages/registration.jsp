@@ -41,6 +41,7 @@
 	margin-top: 16px;
 	padding-bottom: 10px;
 }
+
 .pformbut {
 	margin-top: 22px;
 	padding-bottom: 10px;
@@ -53,7 +54,9 @@
 		<div class="row">
 			<div class="navbar navbar-inverse ">
 				<h3 class="col-lg-4">Payment System Manager</h3>
-				<p class="lang pformbut col-lg-2 col-lg-offset-4 text-right"><fmt:message key="login.label.submitchangelanguage" />:</p>
+				<p class="lang pformbut col-lg-2 col-lg-offset-4 text-right">
+					<fmt:message key="login.label.submitchangelanguage" />
+				</p>
 				<form class="col-lg-1 formbut" action="change.do" method="POST">
 					<c:if test="${empty language}">
 						<input type="hidden" name="lang" value="en_GB">
@@ -66,19 +69,19 @@
 					</c:if>
 					<input type="hidden" name="page" value="registration">
 					<c:if test="${empty language}">
-					<button class="btn btn-warning">
-						<span class="glyphicon glyphicon-refresh"></span> EN
-					</button>
+						<button class="btn btn-warning">
+							<span class="glyphicon glyphicon-refresh"></span> EN
+						</button>
 					</c:if>
 					<c:if test="${language eq 'en_GB'}">
-					<button class="btn btn-warning">
-						<span class="glyphicon glyphicon-refresh"></span> RU
-					</button>
+						<button class="btn btn-warning">
+							<span class="glyphicon glyphicon-refresh"></span> RU
+						</button>
 					</c:if>
 					<c:if test="${language eq 'ru_RU'}">
-					<button class="btn btn-warning">
-						<span class="glyphicon glyphicon-refresh"></span> EN
-					</button>
+						<button class="btn btn-warning">
+							<span class="glyphicon glyphicon-refresh"></span> EN
+						</button>
 					</c:if>
 				</form>
 				<a class="btn btn-primary " href="signin"><fmt:message key="registration.button.signin" /></a>
@@ -86,31 +89,40 @@
 		</div>
 	</div>
 	<div class="container marg">
-		<h2 class="form-signin-heading text-center"><fmt:message key="registration.label.registr" /></h2>
+		<h2 class="form-signin-heading text-center">
+			<fmt:message key="registration.label.registr" />
+		</h2>
 
 		<form class="form-horizontal " action="registration.do" method="POST">
 			<div class="form-group">
-				<label class="control-label col-lg-offset-2 col-lg-2" for="surname"><fmt:message key="registration.label.surname" />:</label>
+				<label class="control-label col-lg-offset-2 col-lg-2" for="surname"><fmt:message
+						key="registration.label.surname" />:</label>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" id="surname" placeholder="<fmt:message key="registration.placeholder.surname" />" name="surname" required>
+					<input type="text" class="form-control" id="surname"
+						placeholder="<fmt:message key="registration.placeholder.surname" />" name="surname" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label class="control-label col-lg-offset-3 col-lg-1" for="name"><fmt:message key="registration.label.name" />:</label>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" id="name" placeholder="<fmt:message key="registration.placeholder.name" />" name="name" required>
+					<input type="text" class="form-control" id="name" placeholder="<fmt:message key="registration.placeholder.name" />"
+						name="name" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-offset-3 col-lg-1" for="lastname"><fmt:message key="registration.label.lastname" />:</label>
+				<label class="control-label col-lg-offset-3 col-lg-1" for="lastname"><fmt:message
+						key="registration.label.lastname" />:</label>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" id="lastname" placeholder="<fmt:message key="registration.placeholder.lastname" />" name="lastname" required>
+					<input type="text" class="form-control" id="lastname"
+						placeholder="<fmt:message key="registration.placeholder.lastname" />" name="lastname" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-offset-3 col-lg-1 " for="E-mail"><fmt:message key="registration.label.mail" />:</label>
+				<label class="control-label col-lg-offset-3 col-lg-1 " for="E-mail"><fmt:message
+						key="registration.label.mail" />:</label>
 				<div class="col-lg-4">
-					<input type="email" class="form-control" id="E-mail" placeholder="<fmt:message key="registration.placeholder.email" />" name="email" required>
+					<input type="email" class="form-control" id="E-mail"
+						placeholder="<fmt:message key="registration.placeholder.email" />" name="email" required>
 				</div>
 			</div>
 
@@ -121,22 +133,28 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="control-label col-lg-offset-3 col-lg-1" for="password"><fmt:message key="registration.label.pass" />:</label>
+				<label class="control-label col-lg-offset-3 col-lg-1" for="password"><fmt:message
+						key="registration.label.pass" />:</label>
 				<div class="col-lg-4">
-					<input type="password" class="form-control" id="password" placeholder="<fmt:message key="registration.placeholder.password" />" name="password" required>
+					<input type="password" class="form-control" id="password"
+						placeholder="<fmt:message key="registration.placeholder.password" />" name="password" required>
 				</div>
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-offset-2 col-lg-2" for="repeatpassword"><fmt:message key="registration.label.secpass" />:</label>
+				<label class="control-label col-lg-offset-2 col-lg-2" for="repeatpassword"><fmt:message
+						key="registration.label.secpass" />:</label>
 				<div class="col-lg-4">
-					<input type="password" class="form-control" id="repeatpassword" placeholder="<fmt:message key="registration.placeholder.repeat" />" name="repeatpassword" required>
+					<input type="password" class="form-control" id="repeatpassword"
+						placeholder="<fmt:message key="registration.placeholder.repeat" />" name="repeatpassword" required>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<div class="col-lg-2 col-lg-offset-5">
-					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validateRegistration()"><fmt:message key="registration.label.signup" /></button>
+					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validateRegistration()">
+						<fmt:message key="registration.label.signup" />
+					</button>
 				</div>
 			</div>
 		</form>
@@ -147,7 +165,7 @@
 	<c:if test="${not empty currentuser}">
 		<div class="container marg-sign-in col-lg-offset-4 cont">
 			<div class="alert alert-danger col-lg-4 margggg text-center" role="alert">
-				<strong>Такой пользователь уже существует!</strong>
+				<strong><fmt:message key="registration.error.email" /></strong>
 			</div>
 		</div>
 	</c:if>

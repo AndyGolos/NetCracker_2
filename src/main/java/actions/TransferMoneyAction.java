@@ -1,6 +1,5 @@
 package actions;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,11 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.cardbeans.Card;
 import beans.userbeans.User;
-import dao.BillDao;
-import dao.HistoryDao;
 import entities.BillEntity;
 import entities.CardEntity;
-import entities.UsageHistoryEntity;
+import services.BillService;
 import services.CardService;
 
 public class TransferMoneyAction implements Action {
@@ -20,40 +17,68 @@ public class TransferMoneyAction implements Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		CardService cardService = new CardService();
+		BillService billService = new BillService();
 
-		// TODO валидация(остальное работает)
 		int cardId = Integer.parseInt(request.getParameter("cardid"));
 		String cardPassword = request.getParameter("cardpassword");
-		int cardTransferId = Integer.parseInt(request.getParameter("cardtransferid"));
-		int summ = Integer.parseInt(request.getParameter("summ"));
+		String stringcardTransferId = request.getParameter("cardtransferid");
+		String stringSumm = request.getParameter("summ");
+		int summ = -1;
+		int cardTransferId = -1;
 
-		// --------------------------------
-
+		// TODO Работает Валидация
+		boolean valid = true;
 		CardEntity cardEntity = cardService.checkCard(cardId);
 
-		BillDao billDao = new BillDao();
-		BillEntity billEntity = billDao.find(cardEntity.getBillId());
+		if (!cardEntity.getPassword().equals(cardPassword)) {
+			request.setAttribute("error", "incorrectpass");
+			valid = false;
+		}
+		if (!valid) {
+			return "formtransferpage";
+		}
 
-		billDao.setMoney(billEntity, -summ);
+		try {
+			cardTransferId = Integer.parseInt(stringcardTransferId);
+		} catch (NumberFormatException e) {
+			request.setAttribute("error", "incorrectcardid");
+			valid = false;
+		}
+		if (!valid) {
+			return "formtransferpage";
+		}
 
-		HistoryDao historyDao = new HistoryDao();
-		UsageHistoryEntity usageHistoryEntity = new UsageHistoryEntity();
-		usageHistoryEntity.setCardId(cardId);
-		usageHistoryEntity.setOperationTime(LocalDate.now());
-		usageHistoryEntity.setValueChange(String.valueOf(-summ));
-		historyDao.add(usageHistoryEntity);
+		CardEntity cardEntity2 = cardService.checkCard(cardTransferId);
+		if (cardEntity2 == null) {
+			request.setAttribute("error", "unexsistcard");
+			valid = false;
+		}
+		if (!valid) {
+			return "formtransferpage";
+		}
 
-		cardEntity = cardService.checkCard(cardTransferId);
-		billEntity = billDao.find(cardEntity.getBillId());
+		try {
+			summ = Integer.parseInt(stringSumm);
+		} catch (Exception e) {
+			request.setAttribute("error", "incorrectsumm");
+			valid = false;
+		}
+		if (!valid) {
+			return "formtransferpage";
+		}
 
-		billDao.setMoney(billEntity, summ);
+		BillEntity billEntity = billService.find(cardEntity.getBillId());
+		System.out.println(billEntity.getMoney());
+		if ((billEntity.getMoney() - summ) < 0) {
+			request.setAttribute("error", "lowmoney");
+			valid = false;
+		}
+		if (!valid) {
+			return "formtransferpage";
+		}
+		// --------------------------------
 
-		usageHistoryEntity = new UsageHistoryEntity();
-		usageHistoryEntity.setCardId(cardTransferId);
-		usageHistoryEntity.setOperationTime(LocalDate.now());
-		usageHistoryEntity.setValueChange("+" + summ);
-		historyDao.add(usageHistoryEntity);
-		// ----------------------------------------
+		cardService.replenishCard(cardId, cardPassword, cardTransferId, summ);
 
 		// Карточки
 		User user = (User) request.getSession().getAttribute("user");

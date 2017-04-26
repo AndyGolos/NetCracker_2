@@ -15,8 +15,6 @@ public class CardTypeDao extends BaseDaoImpl {
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
 
-	// Можно добавить метод add
-
 	public List<CardTypeEntity> findAllTypes() {
 		List<CardTypeEntity> listOfTypes = new ArrayList<>();
 		String sql = "select * from card_type;";
@@ -34,7 +32,6 @@ public class CardTypeDao extends BaseDaoImpl {
 				listOfTypes.add(typeEntity);
 			}
 		} catch (Exception e) {
-			// TODO Logger!
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
@@ -56,13 +53,10 @@ public class CardTypeDao extends BaseDaoImpl {
 				type = resultSet.getString("type");
 			}
 		} catch (Exception e) {
-			// TODO Logger!
 			System.err.println(e);
 		} finally {
 			ConnectionUtil.closeAll(connection, preparedStatement, resultSet);
 		}
-
 		return type;
 	}
-
 }
