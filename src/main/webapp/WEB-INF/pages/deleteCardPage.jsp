@@ -40,7 +40,7 @@
 		<div class="row">
 			<div class="navbar navbar-inverse ">
 				<h3 class="col-lg-4">Payment System Manager</h3>
-				<a class="btn btn-primary col-lg-offset-7" href="transitionaddardpage.html"><fmt:message
+				<a class="btn btn-primary col-lg-offset-7" href="transitionpage"><fmt:message
 						key="deletecardpage.button.back" /></a>
 			</div>
 		</div>
@@ -53,10 +53,10 @@
 
 		<form class="form-horizontal" action="deleteCard.do" method="POST">
 			<div class="form-group">
-				<label class="control-label col-lg-offset-2 col-lg-2" for="password"><fmt:message
+				<label class="control-label col-lg-offset-2 col-lg-2" for="cardid"><fmt:message
 						key="deletecardpage.label.cardid" /></label>
 				<div class="col-lg-4">
-					<input type="number" class="form-control" id="password"
+					<input type="number" class="form-control" id="cardid"
 						placeholder="<fmt:message key="deletecardpage.placeholder.cardid" />" min="1" name="cardid" required>
 				</div>
 			</div>
@@ -72,7 +72,7 @@
 
 			<div class="form-group">
 				<div class="col-lg-4 col-lg-offset-4">
-					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validateAddCard()">
+					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validateDeleteCard()">
 						<fmt:message key="deletecardpage.button.deletecard" />
 					</button>
 				</div>
@@ -96,8 +96,8 @@
 		</div>
 	</c:if>
 
-
-
+	<input type="hidden" id="errorid" value="<fmt:message key="deletecardpage.jserror.errorid" />">
+	<input type="hidden" id="errorpass" value="<fmt:message key="deletecardpage.jserror.errorpass" />">
 
 	<script src="static/js/validation.js" type="text/javascript"></script>
 	<script src="static/js/bootstrap.js" type="text/javascript"></script>

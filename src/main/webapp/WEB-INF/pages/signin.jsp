@@ -120,6 +120,8 @@
 		</form>
 	</div>
 
+	<input type="hidden" id="errorlength" value="<fmt:message key="login.jserror.length" />">
+	<input type="hidden" id="errorincorrect" value="<fmt:message key="login.jserror.incorrect" />">
 
 	<c:if test="${empty currentuser}">
 	</c:if>

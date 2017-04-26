@@ -17,7 +17,7 @@ import beans.userbeans.User;
 public class AuthorizationFilter implements Filter {
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		System.out.println("AuthorizationFilter");
+		System.out.println("AuthorizationFilter init");
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -38,9 +38,7 @@ public class AuthorizationFilter implements Filter {
 				|| url.endsWith(".css") || url.endsWith(".eot") || url.endsWith(".svg") || url.endsWith(".ttf")
 				|| url.endsWith(".woff") || url.endsWith(".map") || url.endsWith(".woff2")
 				|| url.endsWith("userpage.do") || url.endsWith("registration.do") || url.endsWith("change.do")) {
-
 			chain.doFilter(request, response);
-
 		} else {
 			requestDispatcher = req.getRequestDispatcher("signin");
 			requestDispatcher.forward(req, resp);

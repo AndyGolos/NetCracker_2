@@ -106,6 +106,9 @@
 			</div>
 		</form>
 	</div>
+	
+	<input type="hidden" id="errorincorrectbillpass" value="<fmt:message key="createcard.jserror.billpassword" />">
+	<input type="hidden" id="errorincorrectpass" value="<fmt:message key="createcard.jserror.password" />">
 
 	<c:if test="${not empty error}">
 		<div class="container marg-sign-in col-lg-offset-4 cont">

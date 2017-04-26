@@ -71,10 +71,10 @@
 			</div>
 
 			<div class="form-group">
-				<label class="control-label col-lg-offset-2 col-lg-2 " for="bill"><fmt:message
+				<label class="control-label col-lg-offset-2 col-lg-2 " for="cardid"><fmt:message
 						key="transferpage.label.cardtransferid" /></label>
 				<div class="col-lg-4">
-					<input type="text" class="form-control" id="bill"
+					<input type="text" class="form-control" id="cardid"
 						placeholder="<fmt:message key="transferpage.placeholder.cardid" />" name="cardtransferid" required>
 				</div>
 			</div>
@@ -89,7 +89,7 @@
 
 			<div class="form-group">
 				<div class="col-lg-2 col-lg-offset-5">
-					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validatesignIn()">
+					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validateFormTransfer()">
 						<fmt:message key="transferpage.button.transfer" />
 					</button>
 				</div>
@@ -118,6 +118,10 @@
 			</div>
 		</div>
 	</c:if>
+	
+	<input type="hidden" id="errorpass" value="<fmt:message key="transferpage.jserror.password" />">
+	<input type="hidden" id="errorcardid" value="<fmt:message key="transferpage.jserror.idcard" />">
+	<input type="hidden" id="errorsumm" value="<fmt:message key="transferpage.jserror.summ" />">
 
 	<script src="static/js/bootstrap.js" type="text/javascript"></script>
 	<script src="static/js/validation.js" type="text/javascript"></script>

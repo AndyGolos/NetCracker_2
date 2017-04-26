@@ -72,7 +72,7 @@
 				value="<c:out value="${billid}"/>">
 			<div class="form-group">
 				<div class="col-lg-4 col-lg-offset-4">
-					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validateAddCard()">
+					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validateReplenish()">
 						<fmt:message key="replenishpage.button.replenish" />
 					</button>
 				</div>
@@ -93,6 +93,8 @@
 		</div>
 	</c:if>
 
+	<input type="hidden" id="errorsumm" value="<fmt:message key="replenishpage.jserror.summ" />">
+	<input type="hidden" id="errorpass" value="<fmt:message key="replenishpage.jserror.pass" />">
 
 
 	<script src="static/js/validation.js" type="text/javascript"></script>

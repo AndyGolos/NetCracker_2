@@ -91,7 +91,6 @@
 		<class-url>POST/addcardwithbill</class-url>
 	</mapping>
 	
-	
 	<mapping>
 		<class-name>actions.TransitionTransferMoneyAction</class-name>
 		<class-url>GET/transitionformtransfer</class-url>
@@ -102,9 +101,13 @@
 		<class-url>POST/transfermoney</class-url>
 	</mapping>
 	
-	
 	<mapping>
 		<class-name>actions.LanguageChangeAction</class-name>
 		<class-url>POST/change</class-url>
+	</mapping>
+	
+	<mapping>
+		<class-name>actions.ExitAction</class-name>
+		<class-url>POST/exit</class-url>
 	</mapping>
 </site>

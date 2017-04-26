@@ -19,11 +19,12 @@ public class Controller extends HttpServlet {
 
 	public static Map<String, Action> classMapping = new HashMap<>();
 
-	// Парсим xml файл в котором будут находится наш урл к странице и наш класс,
+	// Парсим xml файл в котором будут находится наш урл к action'y и наш класс,
 	// который будем вызывать рефлексией
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		classMapping = ClassParser.parseXML(config.getServletContext().getRealPath("/") + "/WEB-INF");
+		System.out.println(classMapping);
 	}
 
 	@Override
@@ -35,8 +36,6 @@ public class Controller extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		System.out.println(classMapping);
 
 		Action action = ActionFactory.getAction(request);
 		System.out.println(action);

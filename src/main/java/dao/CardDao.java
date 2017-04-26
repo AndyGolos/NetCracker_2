@@ -85,7 +85,6 @@ public class CardDao extends BaseDaoImpl {
 			preparedStatement.setInt(1, id);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				System.out.println("carddao");
 				cardEntity = new CardEntity();
 				cardEntity.setId(resultSet.getInt("id"));
 				cardEntity.setUserId(resultSet.getInt("user_id"));
@@ -93,7 +92,6 @@ public class CardDao extends BaseDaoImpl {
 				cardEntity.setCardType(resultSet.getInt("card_type_id"));
 				cardEntity.setPassword(resultSet.getString("password"));
 				cardEntity.setStatus(resultSet.getBoolean("status"));
-				// System.out.println(resultSet.getBoolean("status"));
 				cardEntity.setRegistration(resultSet.getDate("registration").toLocalDate());
 				cardEntity.setValidity(resultSet.getDate("validity").toLocalDate());
 				listOfCards.add(cardEntity);

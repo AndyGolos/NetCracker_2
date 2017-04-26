@@ -51,7 +51,7 @@
 						<tr>
 							<td><c:out value="${history.id}" /></td>
 							<td><c:out value="${history.cardId}" /></td>
-							<td><c:out value="${history.operationTime}" /></td>
+							<td><fmt:formatDate pattern="dd.MM.yyyy HH:mm:ss" value="${history.operationTime}" /></td>
 							<td><c:out value="${history.valueChange}" /></td>
 						</tr>
 					</c:forEach>

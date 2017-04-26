@@ -55,11 +55,14 @@
 			</div>
 			<div class="form-group">
 				<div class="col-lg-4 col-lg-offset-4">
-					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validateAddCard()"><fmt:message key="unblockpage.button.unblock" /></button>
+					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validateUnblock()"><fmt:message key="unblockpage.button.unblock" /></button>
 				</div>
 			</div>
 		</form>
 	</div>
+	
+	<input type="hidden" id="errorid" value="<fmt:message key="unblockpage.jserror.cardid" />">
+	
 	<c:if test="${not empty error}">
 		<div class="container marg-sign-in col-lg-offset-4 cont">
 			<div class="alert alert-danger col-lg-4 margggg text-center" role="alert">

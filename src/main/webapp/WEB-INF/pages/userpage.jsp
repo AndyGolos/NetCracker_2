@@ -33,7 +33,7 @@
 		<div class="row">
 			<div class="navbar navbar-inverse ">
 				<h3 class="col-lg-4">Payment System Manager</h3>
-				<form action="signin.do" method="GET">
+				<form action="exit.do" method="POST">
 					<div class="form-group">
 						<div class="col-lg-2 col-lg-offset-5">
 							<button type="submit" class="btn btn-primary col-lg-offset-6 btn-block">
@@ -55,31 +55,35 @@
 				</h2>
 				<p>
 					<strong><fmt:message key="userpage.label.id" /></strong>
-					<jsp:getProperty property="id" name="user" />
+					<c:out value="${user.id}"></c:out>
 				</p>
 				<p>
 					<strong><fmt:message key="userpage.label.surname" /></strong>
-					<jsp:getProperty property="surname" name="user" />
+					<c:out value="${user.surname}"></c:out>
 				</p>
 				<p>
 					<strong><fmt:message key="userpage.label.name" /></strong>
-					<jsp:getProperty property="name" name="user" />
+					<c:out value="${user.name}"></c:out>
 				</p>
 				<p>
 					<strong><fmt:message key="userpage.label.lastname" /></strong>
-					<jsp:getProperty property="lastname" name="user" />
+					<c:out value="${user.lastname}"></c:out>
 				</p>
 				<p>
 					<strong><fmt:message key="userpage.label.email" /></strong>
-					<jsp:getProperty property="email" name="user" />
+					<c:out value="${user.email}"></c:out>
 				</p>
 				<p>
 					<strong><fmt:message key="userpage.label.dateofbirth" /></strong>
-					<jsp:getProperty property="dateOfBirth" name="user" />
+					<fmt:parseDate value="${user.dateOfBirth}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
+					<fmt:formatDate value="${parsedDate}" var="newParsedDate" type="date" pattern="dd.MM.yyyy" />
+					<c:out value="${newParsedDate}"></c:out>
 				</p>
 				<p>
 					<strong><fmt:message key="userpage.label.registration" /></strong>
-					<jsp:getProperty property="registration" name="user" />
+					<fmt:parseDate value="${user.registration}" pattern="yyyy-MM-dd" var="parsedDate" type="date" />
+					<fmt:formatDate value="${parsedDate}" var="newParsedDate2" type="date" pattern="dd.MM.yyyy" />
+					<c:out value="${newParsedDate2}"></c:out>
 				</p>
 			</div>
 		</div>

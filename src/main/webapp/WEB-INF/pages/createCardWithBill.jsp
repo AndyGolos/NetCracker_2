@@ -73,13 +73,15 @@
 			</div>
 			<div class="form-group">
 				<div class="col-lg-4 col-lg-offset-4">
-					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validateAddCard()">
+					<button class="btn btn-lg btn-primary btn-block" type="submit" onclick="return validateAddCardWithBill()">
 						<fmt:message key="createcardwithbill.button.create" />
 					</button>
 				</div>
 			</div>
 		</form>
 	</div>
+	<input type="hidden" id="error" value="<fmt:message key="createcardwithbill.jserror.incorrectpass" />">
+	
 	<c:if test="${not empty error}">
 		<div class="container marg-sign-in col-lg-offset-4 cont">
 			<div class="alert alert-danger col-lg-4 margggg text-center" role="alert">

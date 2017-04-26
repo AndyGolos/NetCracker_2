@@ -159,6 +159,13 @@
 			</div>
 		</form>
 	</div>
+	
+	<input type="hidden" id="errorsurname" value="<fmt:message key="registration.jserror.surname" />">
+	<input type="hidden" id="errorname" value="<fmt:message key="registration.jserror.name" />">
+	<input type="hidden" id="errorlastname" value="<fmt:message key="registration.jserror.lastname" />">
+	<input type="hidden" id="erroremail" value="<fmt:message key="registration.jserror.email" />">
+	<input type="hidden" id="errorpassword" value="<fmt:message key="registration.jserror.password" />">
+	<input type="hidden" id="errorincorrect" value="<fmt:message key="registration.jserror.repeatpassword" />">
 
 	<c:if test="${empty currentuser}">
 	</c:if>
