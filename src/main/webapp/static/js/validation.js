@@ -7,7 +7,7 @@ function validatesignIn() {
 	var lang = html.getAttribute("lang");
 
 	var emailpattern = /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i;
-	var passpattern = /[0-9a-z]{4,}/i;
+	var passpattern = /[0-9a-zа-яА-ЯёЁ]{4,}/i;
 
 	var em = emailpattern.test(email);
 	var pas = passpattern.test(password);
@@ -37,7 +37,7 @@ function validateRegistration() {
 
 	var textpattern = /[а-яА-ЯёЁa-zA-Z]{1,}/;
 	var emailpattern = /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i;
-	var passpattern = /[0-9a-z]{4,}/i;
+	var passpattern = /[0-9a-zа-яА-ЯёЁ]{4,}/i;
 
 	var sn = textpattern.test(surname);
 	var name = textpattern.test(name);
@@ -81,7 +81,7 @@ function validateAddCard() {
 	var password = document.getElementById("password").value;
 
 	var billpattern = /[0-9]{1,}/;
-	var passpattern = /[0-9a-z]{4,20}/i;
+	var passpattern = /[0-9a-zа-яА-ЯёЁ]{4,20}/i;
 
 	var billpass = passpattern.test(billpassword);
 	var ps = passpattern.test(password);
@@ -102,7 +102,7 @@ function validateAddCard() {
 
 function validateAddCardWithBill() {
 	var password = document.getElementById("password").value;
-	var passpattern = /[0-9a-z]{4,20}/i;
+	var passpattern = /[0-9a-zа-яА-ЯёЁ]{4,20}/i;
 	var ps = passpattern.test(password);
 	var error = document.getElementById("error").value;
 
@@ -119,7 +119,7 @@ function validateDeleteCard() {
 	var password = document.getElementById("password").value;
 
 	var cardidpattern = /[0-9]{1,}/;
-	var passpattern = /[0-9a-z]{4,20}/i;
+	var passpattern = /[0-9a-zа-яА-ЯёЁ]{4,20}/i;
 
 	var ci = cardidpattern.test(cardid);
 	var ps = passpattern.test(password);
@@ -143,7 +143,7 @@ function validateFormTransfer() {
 	var cardid = document.getElementById("cardid").value;
 	var summ = document.getElementById("summ").value;
 
-	var passpattern = /[0-9a-z]{4,20}/i;
+	var passpattern = /[0-9a-zа-яА-ЯёЁ]{4,20}/i;
 	var cardidpattern = /[0-9]{1,}/;
 	var summpattern = /[0-9]{1,}/;
 
@@ -173,7 +173,7 @@ function validateReplenish() {
 	var password = document.getElementById("password").value;
 
 	var summpattern = /[0-9]{1,}/;
-	var passpattern = /[0-9a-z]{4,20}/i;
+	var passpattern = /[0-9a-zа-яА-ЯёЁ]{4,20}/i;
 
 	var ps = passpattern.test(password);
 	var summ = summpattern.test(summ);

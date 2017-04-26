@@ -13,13 +13,13 @@ public class BillDao extends BaseDaoImpl {
 	private static PreparedStatement preparedStatement = null;
 	private static ResultSet resultSet = null;
 
-	public int add(String password) {
+	public int add(int password) {
 		String sql = "insert into bill (password) value (?);";
 		int id = -1;
 		try {
 			connection = ConnectionUtil.getConnection();
 			preparedStatement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-			preparedStatement.setString(1, password);
+			preparedStatement.setInt(1, password);
 			preparedStatement.executeUpdate();
 
 			resultSet = preparedStatement.getGeneratedKeys();

@@ -15,7 +15,7 @@ public class BillService {
 		historyDao = new HistoryDao();
 	}
 
-	public int addBill(String password) {
+	public int addBill(int password) {
 		int billId = billDao.add(password);
 		return billId;
 	}

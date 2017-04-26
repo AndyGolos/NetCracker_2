@@ -38,6 +38,15 @@ public class ReplenishBillAction implements Action {
 			return "replenishCardpage";
 		}
 
+		if (summ <= 0) {
+			request.setAttribute("error", "format");
+			valid = false;
+		}
+
+		if (!valid) {
+			return "replenishCardpage";
+		}
+
 		CardEntity cardEntity = cardService.checkCard(cardId);
 
 		if (!cardEntity.getPassword().equals(password)) {

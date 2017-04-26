@@ -159,7 +159,7 @@
 			</div>
 		</form>
 	</div>
-	
+
 	<input type="hidden" id="errorsurname" value="<fmt:message key="registration.jserror.surname" />">
 	<input type="hidden" id="errorname" value="<fmt:message key="registration.jserror.name" />">
 	<input type="hidden" id="errorlastname" value="<fmt:message key="registration.jserror.lastname" />">
@@ -167,12 +167,27 @@
 	<input type="hidden" id="errorpassword" value="<fmt:message key="registration.jserror.password" />">
 	<input type="hidden" id="errorincorrect" value="<fmt:message key="registration.jserror.repeatpassword" />">
 
-	<c:if test="${empty currentuser}">
-	</c:if>
-	<c:if test="${not empty currentuser}">
+	<c:if test="${not empty error}">
 		<div class="container marg-sign-in col-lg-offset-4 cont">
 			<div class="alert alert-danger col-lg-4 margggg text-center" role="alert">
-				<strong><fmt:message key="registration.error.email" /></strong>
+				<c:if test="${error eq 'surname'}">
+					<strong><fmt:message key="registration.error.surname" /></strong>
+				</c:if>
+				<c:if test="${error eq 'name'}">
+					<strong><fmt:message key="registration.error.name" /></strong>
+				</c:if>
+				<c:if test="${error eq 'lastname'}">
+					<strong><fmt:message key="registration.error.lastname" /></strong>
+				</c:if>
+				<c:if test="${error eq 'pass'}">
+					<strong><fmt:message key="registration.error.password" /></strong>
+				</c:if>
+				<c:if test="${error eq 'password'}">
+					<strong><fmt:message key="registration.error.repeatpass" /></strong>
+				</c:if>
+				<c:if test="${error eq 'currentUser'}">
+					<strong><fmt:message key="registration.error.email" /></strong>
+				</c:if>
 			</div>
 		</div>
 	</c:if>

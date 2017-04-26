@@ -67,6 +67,14 @@ public class TransferMoneyAction implements Action {
 			return "formtransferpage";
 		}
 
+		if (summ <= 0) {
+			request.setAttribute("error", "incorrectsumm");
+			valid = false;
+		}
+		if (!valid) {
+			return "formtransferpage";
+		}
+
 		BillEntity billEntity = billService.find(cardEntity.getBillId());
 		System.out.println(billEntity.getMoney());
 		if ((billEntity.getMoney() - summ) < 0) {

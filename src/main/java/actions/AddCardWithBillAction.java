@@ -53,7 +53,8 @@ public class AddCardWithBillAction implements Action {
 		// ------------------------------
 
 		// Создание счёта и получение созданного id
-		int billId = billService.addBill(password);
+		int generatedPassword = generatePassword();
+		int billId = billService.addBill(generatedPassword);
 
 		User user = (User) request.getSession().getAttribute("user");
 
@@ -63,7 +64,7 @@ public class AddCardWithBillAction implements Action {
 
 		request.setAttribute("id", cardid);
 		request.setAttribute("billid", billId);
-		request.setAttribute("billpassword", generatePassword());
+		request.setAttribute("billpassword", generatedPassword);
 		request.setAttribute("type", type);
 		request.setAttribute("cardpassword", password);
 

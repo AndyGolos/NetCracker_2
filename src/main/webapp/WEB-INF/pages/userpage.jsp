@@ -163,7 +163,8 @@
 								<td><fmt:message key="userpage.label.status.blocked" /></td>
 							</c:if>
 							<td><c:out value="${card.bill.money}" /></td>
-							<td><c:out value="${card.validity}" /></td>
+							<td><fmt:parseDate value="${card.validity}" pattern="yyyy-MM-dd" var="parsedDate" type="date" /> <fmt:formatDate
+									value="${parsedDate}" var="newParsedDate" type="date" pattern="dd.MM.yyyy" /> <c:out value="${newParsedDate}" />
 							<td>
 								<form action="history.do" method="POST">
 									<input type="hidden" name="history" value="<c:out value="${card.id}"/>" />

@@ -57,7 +57,9 @@ public class UserService {
 
 	public UserEntity checkUser(UserEntity user) {
 		UserEntity registeredEntity = userDao.find(user);
-		if (!registeredEntity.getPassword().equals(user.getPassword())) {
+		if (registeredEntity == null) {
+			return null;
+		} else if (!user.getPassword().equals(registeredEntity.getPassword())) {
 			return null;
 		} else
 			return registeredEntity;

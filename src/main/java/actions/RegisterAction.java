@@ -2,6 +2,8 @@ package actions;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +27,62 @@ public class RegisterAction implements Action {
 		String email = request.getParameter("email");
 		String dateOfBirth = request.getParameter("dateOfBirth");
 		String password = request.getParameter("password");
-		// TODO Пароль
-		// String repeatpassword = request.getParameter("repeatpassword");
+		String repeatpassword = request.getParameter("repeatpassword");
 
-		// TODO Валидация
+		// TODO Работает Валидация
+		boolean valid = true;
+
+		Pattern p = Pattern.compile("[a-zа-яА-ЯёЁ]{2,}");
+		Matcher m = p.matcher(surname);
+		if (!m.find()) {
+			request.setAttribute("error", "surname");
+			valid = false;
+		}
+
+		if (!valid) {
+			return "registration";
+		}
+
+		m = p.matcher(name);
+		if (!m.find()) {
+			request.setAttribute("error", "name");
+			valid = false;
+		}
+
+		if (!valid) {
+			return "registration";
+		}
+
+		m = p.matcher(lastname);
+		if (!m.find()) {
+			request.setAttribute("error", "lastname");
+			valid = false;
+		}
+
+		if (!valid) {
+			return "registration";
+		}
+
+		Pattern p2 = Pattern.compile("[a-zA-Z0-9а-яА-ЯёЁ]{4,}");
+		Matcher m2 = p2.matcher(password);
+		if (!m2.find()) {
+			request.setAttribute("error", "pass");
+			valid = false;
+		}
+
+		if (!valid) {
+			return "registration";
+		}
+
+		if (!password.equals(repeatpassword)) {
+			request.setAttribute("error", "password");
+			valid = false;
+		}
+
+		if (!valid) {
+			return "registration";
+		}
+
 		UserEntity user = new UserEntity();
 		user.setSurname(surname);
 		user.setName(name);
@@ -40,7 +94,11 @@ public class RegisterAction implements Action {
 		UserEntity currentUser = userService.checkUser(user);
 
 		if (currentUser != null) {
-			request.setAttribute("currentuser", "error");
+			request.setAttribute("error", "currentUser");
+			valid = false;
+		}
+
+		if (!valid) {
 			return "registration";
 		}
 		// ------------------------------------------------------------
