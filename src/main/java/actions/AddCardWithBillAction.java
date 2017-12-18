@@ -1,15 +1,14 @@
 package actions;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.Random;
+import beans.User;
+import services.BillService;
+import services.CardService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import beans.userbeans.User;
-import services.BillService;
-import services.CardService;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.Random;
 
 public class AddCardWithBillAction implements Action {
 
@@ -50,7 +49,6 @@ public class AddCardWithBillAction implements Action {
 		if (!valid) {
 			return "createCardWithBill";
 		}
-		// ------------------------------
 
 		// Создание счёта и получение созданного id
 		int generatedPassword = generatePassword();

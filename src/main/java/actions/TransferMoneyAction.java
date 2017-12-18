@@ -1,16 +1,15 @@
 package actions;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import beans.cardbeans.Card;
-import beans.userbeans.User;
+import beans.Card;
+import beans.User;
 import entities.BillEntity;
 import entities.CardEntity;
 import services.BillService;
 import services.CardService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public class TransferMoneyAction implements Action {
 
@@ -26,7 +25,6 @@ public class TransferMoneyAction implements Action {
 		int summ = -1;
 		int cardTransferId = -1;
 
-		// TODO Работает Валидация
 		boolean valid = true;
 		CardEntity cardEntity = cardService.checkCard(cardId);
 

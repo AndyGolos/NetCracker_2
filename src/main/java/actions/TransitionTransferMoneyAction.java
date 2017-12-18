@@ -1,16 +1,14 @@
 package actions;
 
+import beans.Card;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import beans.cardbeans.Card;
-
 public class TransitionTransferMoneyAction implements Action {
-
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		// Наши счета, на которые зарегестрированы карточки
@@ -26,5 +24,4 @@ public class TransitionTransferMoneyAction implements Action {
 		request.getSession().setAttribute("cardsIds", cardsIds);
 		return "formtransferpage";
 	}
-
 }

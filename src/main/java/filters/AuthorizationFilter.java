@@ -1,23 +1,15 @@
 package filters;
 
-import java.io.IOException;
+import beans.User;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import beans.userbeans.User;
+import java.io.IOException;
 
 public class AuthorizationFilter implements Filter {
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		System.out.println("AuthorizationFilter init");
 	}
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -29,8 +21,6 @@ public class AuthorizationFilter implements Filter {
 		User user = (User) req.getSession().getAttribute("user");
 		String url = req.getRequestURI();
 
-		System.out.println(url);
-		System.out.println(user);
 		RequestDispatcher requestDispatcher;
 
 		// TODO Подредактировать
@@ -48,5 +38,4 @@ public class AuthorizationFilter implements Filter {
 
 	public void destroy() {
 	}
-
 }

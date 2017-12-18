@@ -1,12 +1,11 @@
 package actions;
 
-import java.util.List;
+import beans.CardHistory;
+import services.CardHistoryService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import beans.CardHistory;
-import services.CardHistoryService;
+import java.util.List;
 
 public class WatchUsageHistoryAction implements Action {
 
@@ -21,5 +20,4 @@ public class WatchUsageHistoryAction implements Action {
 		request.getSession().setAttribute("histories", cardHistories);
 		return "history";
 	}
-
 }

@@ -1,5 +1,4 @@
 package dao;
 
-public abstract class BaseDaoImpl implements BaseDao {
-
+abstract class BaseDaoImpl implements BaseDao {
 }

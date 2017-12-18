@@ -1,13 +1,9 @@
 package services;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-
+import beans.Card;
 import beans.CardBill;
 import beans.CardType;
-import beans.cardbeans.Card;
-import beans.userbeans.User;
+import beans.User;
 import dao.BillDao;
 import dao.CardDao;
 import dao.CardTypeDao;
@@ -15,6 +11,10 @@ import dao.HistoryDao;
 import entities.BillEntity;
 import entities.CardEntity;
 import entities.UsageHistoryEntity;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardService {
 
@@ -32,11 +32,11 @@ public class CardService {
 
 	public List<Card> findAllUsersCards(User user) {
 
-		Card cardbean = null;
-		CardBill cardBill = null;
-		CardType cardType = null;
+		Card cardbean;
+		CardBill cardBill;
+		CardType cardType;
 
-		BillEntity billEntity = null;
+		BillEntity billEntity;
 
 		List<CardEntity> cardEntities = cardDao.findAllCards(user.getId());
 
@@ -69,8 +69,7 @@ public class CardService {
 	}
 
 	public int addCard(int userId, int billId, int type, String password, Date registration, Date validity) {
-		int cardId = cardDao.add(userId, billId, type, password, registration, validity);
-		return cardId;
+		return cardDao.add(userId, billId, type, password, registration, validity);
 	}
 
 	public void unblockCard(int cardId) {
@@ -78,8 +77,7 @@ public class CardService {
 	}
 
 	public CardEntity checkCard(int cardId) {
-		CardEntity cardEntity = cardDao.find(cardId);
-		return cardEntity;
+		return cardDao.find(cardId);
 	}
 
 	public void blockCard(int cardId) {

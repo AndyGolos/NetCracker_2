@@ -1,18 +1,17 @@
 package actions;
 
+import beans.Card;
+import beans.User;
+import entities.UserEntity;
+import services.CardService;
+import services.UserService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import beans.cardbeans.Card;
-import beans.userbeans.User;
-import entities.UserEntity;
-import services.CardService;
-import services.UserService;
 
 public class RegisterAction implements Action {
 
@@ -29,7 +28,6 @@ public class RegisterAction implements Action {
 		String password = request.getParameter("password");
 		String repeatpassword = request.getParameter("repeatpassword");
 
-		// TODO Работает Валидация
 		boolean valid = true;
 
 		Pattern p = Pattern.compile("[a-zа-яА-ЯёЁ]{2,}");

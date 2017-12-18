@@ -1,15 +1,14 @@
 package actions;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import beans.cardbeans.Card;
-import beans.userbeans.User;
+import beans.Card;
+import beans.User;
 import entities.CardEntity;
 import services.BillService;
 import services.CardService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public class ReplenishBillAction implements Action {
 
@@ -25,7 +24,6 @@ public class ReplenishBillAction implements Action {
 		String password = request.getParameter("password");
 		int summ = -1;
 
-		// TODO Работает Валидация
 		boolean valid = true;
 		try {
 			summ = Integer.parseInt(stringSumm);

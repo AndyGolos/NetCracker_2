@@ -1,12 +1,11 @@
 package actions;
 
-import java.util.List;
+import beans.User;
+import services.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import beans.userbeans.User;
-import services.UserService;
+import java.util.List;
 
 public class WatchAllUsersAction implements Action {
 
@@ -20,5 +19,4 @@ public class WatchAllUsersAction implements Action {
 		request.getSession().setAttribute("users", users);
 		return "allUserspage";
 	}
-
 }

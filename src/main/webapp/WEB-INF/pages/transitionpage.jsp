@@ -43,7 +43,7 @@
 			<fmt:message key="transitionaddcardpage.label.newcard" />
 		</h2>
 
-		<jsp:useBean id="cards" type="java.util.List<beans.cardbeans.Card>" scope="session" />
+        <jsp:useBean id="cards" type="java.util.List<beans.Card>" scope="session"/>
 
 		<form class="form-horizontal " action="createCard.do">
 			<div class="form-group">

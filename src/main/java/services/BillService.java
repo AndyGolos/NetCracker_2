@@ -16,8 +16,7 @@ public class BillService {
 	}
 
 	public int addBill(int password) {
-		int billId = billDao.add(password);
-		return billId;
+		return billDao.add(password);
 	}
 
 	public void replenishBill(int billId, int summ, int cardId) {

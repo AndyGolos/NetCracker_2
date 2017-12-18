@@ -1,15 +1,14 @@
 package actions;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import beans.cardbeans.Card;
-import beans.userbeans.User;
+import beans.Card;
+import beans.User;
 import entities.UserEntity;
 import services.CardService;
 import services.UserService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 public class UserPageAction implements Action {
 

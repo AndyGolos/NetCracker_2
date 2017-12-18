@@ -1,17 +1,16 @@
 package resources;
 
-import java.io.File;
-import java.util.Map;
+import actions.Action;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
-
-import actions.Action;
+import java.io.File;
+import java.util.Map;
 
 public class ClassParser {
 
 	public static Map<String, Action> parseXML(String rootPath) {
-		MappingHandler mappingHandler = null;
+		MappingHandler mappingHandler;
 		Map<String, Action> classHandler = null;
 		try {
 			File inputFile = new File(rootPath + "/resources/pages.xml");
@@ -21,7 +20,7 @@ public class ClassParser {
 			saxParser.parse(inputFile, mappingHandler);
 			classHandler = mappingHandler.bridge(mappingHandler.getClassUrls(), mappingHandler.getClassNames());
 		} catch (Exception e) {
-			System.err.println(e);
+			System.err.println();
 		}
 		return classHandler;
 	}

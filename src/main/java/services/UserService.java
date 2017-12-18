@@ -1,14 +1,14 @@
 package services;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import beans.User;
 import beans.UserRole;
-import beans.userbeans.User;
 import dao.RoleDao;
 import dao.UserDao;
 import entities.RoleEntity;
 import entities.UserEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
 	private UserDao userDao;
@@ -28,7 +28,7 @@ public class UserService {
 
 		List<UserRole> userRoles = new ArrayList<>();
 		User userbean = new User();
-		UserRole userRole = null;
+		UserRole userRole;
 
 		UserEntity currentEntity = userDao.find(userEntity);
 
@@ -69,12 +69,12 @@ public class UserService {
 
 		List<User> users = new ArrayList<>();
 
-		User userbean = null;
-		UserRole userRole = null;
+		User userbean;
+		UserRole userRole;
 
 		List<UserEntity> userEntities = userDao.findAllUsers();
-		List<RoleEntity> roleEntity = null;
-		List<UserRole> userRoles = null;
+		List<RoleEntity> roleEntity;
+		List<UserRole> userRoles;
 
 		for (UserEntity userEntity : userEntities) {
 			userbean = new User();

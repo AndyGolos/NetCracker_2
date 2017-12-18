@@ -1,14 +1,13 @@
 package actions;
 
-import java.util.List;
+import beans.Card;
+import beans.User;
+import entities.CardEntity;
+import services.CardService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import beans.cardbeans.Card;
-import beans.userbeans.User;
-import entities.CardEntity;
-import services.CardService;
+import java.util.List;
 
 public class UnblockCardAction implements Action {
 
@@ -18,7 +17,7 @@ public class UnblockCardAction implements Action {
 
 		String stringCardId = request.getParameter("cardid");
 
-		// TODO Работает Валидация
+
 		boolean valid = true;
 		int cardId = 0;
 		try {
@@ -43,7 +42,7 @@ public class UnblockCardAction implements Action {
 			return "unblockCardpage";
 		}
 
-		if (cardEntity.getStatus() == true) {
+		if (cardEntity.getStatus()) {
 			request.setAttribute("error", "unblocked");
 			valid = false;
 		}
@@ -55,14 +54,11 @@ public class UnblockCardAction implements Action {
 
 		cardService.unblockCard(cardId);
 
-		// TODO Для проверки!!!!!!!! У админа не будет карточек!!!!!!
-
 		User user = (User) request.getSession().getAttribute("user");
 		List<Card> cardlist = cardService.findAllUsersCards(user);
 
 		request.getSession().setAttribute("cards", cardlist);
-		// -----------------------------------------------------DELETE
+
 		return "userpage";
 	}
-
 }

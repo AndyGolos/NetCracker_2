@@ -1,13 +1,12 @@
 package actions;
 
-import java.util.List;
+import beans.Card;
+import beans.User;
+import services.CardService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import beans.cardbeans.Card;
-import beans.userbeans.User;
-import services.CardService;
+import java.util.List;
 
 public class BlockCardAction implements Action {
 
@@ -25,5 +24,4 @@ public class BlockCardAction implements Action {
 		request.getSession().setAttribute("cards", cardlist);
 		return "userpage";
 	}
-
 }

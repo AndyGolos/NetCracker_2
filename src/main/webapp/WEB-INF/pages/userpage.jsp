@@ -46,7 +46,7 @@
 		</div>
 	</div>
 
-	<jsp:useBean id="user" class="beans.userbeans.User" scope="session" />
+    <jsp:useBean id="user" class="beans.User" scope="session"/>
 	<div class="container">
 		<div class="row col-lg-6 col-lg-offset-1">
 			<div class="well profile col-lg-12">
@@ -95,7 +95,7 @@
 							<fmt:message key="userpage.button.createcard" />
 						</button>
 					</form>
-					<jsp:useBean id="cards" type="java.util.List<beans.cardbeans.Card>" scope="session" />
+                    <jsp:useBean id="cards" type="java.util.List<beans.Card>" scope="session"/>
 					<c:if test="${fn:length(cards)==0}">
 					</c:if>
 					<c:if test="${fn:length(cards)!=0}">

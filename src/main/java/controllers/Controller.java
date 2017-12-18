@@ -1,21 +1,19 @@
 package controllers;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import actions.Action;
+import actions.ActionFactory;
+import resources.ClassParser;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import actions.Action;
-import actions.ActionFactory;
-import resources.ClassParser;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Controller extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
 	public static Map<String, Action> classMapping = new HashMap<>();
 
@@ -24,7 +22,6 @@ public class Controller extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		classMapping = ClassParser.parseXML(config.getServletContext().getRealPath("/") + "/WEB-INF");
-		System.out.println(classMapping);
 	}
 
 	@Override
@@ -38,15 +35,12 @@ public class Controller extends HttpServlet {
 			throws ServletException, IOException {
 
 		Action action = ActionFactory.getAction(request);
-		System.out.println(action);
 
 		if (action != null) {
 			String view = action.execute(request, response);
-			System.out.println("controller = " + view);
 			request.getRequestDispatcher(view).forward(request, response);
 		} else {
 			request.getRequestDispatcher("errorpage").forward(request, response);
 		}
-
 	}
 }

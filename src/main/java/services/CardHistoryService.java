@@ -1,11 +1,11 @@
 package services;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import beans.CardHistory;
 import dao.HistoryDao;
 import entities.UsageHistoryEntity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CardHistoryService {
 
@@ -17,7 +17,7 @@ public class CardHistoryService {
 
 	public List<CardHistory> findCardsHistory(int cardId) {
 
-		CardHistory cardHistory = null;
+		CardHistory cardHistory;
 		List<CardHistory> cardHistories = new ArrayList<>();
 
 		List<UsageHistoryEntity> historylist = historyDao.findAll(cardId);

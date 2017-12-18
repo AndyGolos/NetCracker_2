@@ -10,5 +10,4 @@ public class ExitAction implements Action {
 		request.getSession().invalidate();
 		return "signin";
 	}
-
 }

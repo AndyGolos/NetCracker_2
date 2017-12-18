@@ -12,5 +12,4 @@ public class LanguageChangeAction implements Action {
 		request.getSession().setAttribute("language", language);
 		return page;
 	}
-
 }

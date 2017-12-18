@@ -1,17 +1,16 @@
 package actions;
 
+import beans.Card;
+import beans.CardType;
+import dao.CardTypeDao;
+import entities.CardTypeEntity;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import beans.CardType;
-import beans.cardbeans.Card;
-import dao.CardTypeDao;
-import entities.CardTypeEntity;
 
 public class CreateCardAction implements Action {
 

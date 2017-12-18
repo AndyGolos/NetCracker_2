@@ -1,20 +1,18 @@
 package utils;
 
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
 
 public class ConnectionUtil {
 
 	public static Connection getConnection() throws Exception {
 		InitialContext initContext = new InitialContext();
 		DataSource dataSource = (DataSource) initContext.lookup("java:comp/env/jdbc/NetCracker_2");
-		Connection connection = dataSource.getConnection();
-		return connection;
+		return dataSource.getConnection();
 	}
 
 	public static void closeAll(Connection Connection, Statement Statement, ResultSet ResultSet) {
@@ -23,7 +21,7 @@ public class ConnectionUtil {
 		closeConnection(Connection);
 	}
 
-	public static void closeConnection(Connection connection) {
+	private static void closeConnection(Connection connection) {
 		if (connection != null) {
 			try {
 				connection.close();
@@ -33,7 +31,7 @@ public class ConnectionUtil {
 		}
 	}
 
-	public static void closeStatement(Statement statement) {
+	private static void closeStatement(Statement statement) {
 		if (statement != null) {
 			try {
 				statement.close();
@@ -43,7 +41,7 @@ public class ConnectionUtil {
 		}
 	}
 
-	public static void closeResultSet(ResultSet ResultSet) {
+	private static void closeResultSet(ResultSet ResultSet) {
 		if (ResultSet != null) {
 			try {
 				ResultSet.close();
